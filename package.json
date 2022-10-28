@@ -2,5 +2,10 @@
   "name": "kuwacoin-faucet",
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "compile": "npm run compile -w core",
+    "chain": "npm run chain -w core",
+    "deploy": "npm run deploy -w core"
+  }
 }
