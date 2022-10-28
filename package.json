@@ -1,0 +1,6 @@
+{
+  "name": "kuwacoin-faucet",
+  "workspaces": [
+    "packages/*"
+  ]
+}
