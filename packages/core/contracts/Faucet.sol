@@ -6,22 +6,22 @@ import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 contract Faucet {
   IERC20Metadata token;
   address public owner;
-  mapping(address => uint256) nextRequestAt;
-  uint256 faucetDripAmount = 1;
+  uint256 public constant DRIP_AMOUNT = 5000;
+  mapping(address => bool) drippedList;
 
   constructor(address _tokenAddress, address _ownerAddress) {
     token = IERC20Metadata(_tokenAddress);
     owner = _ownerAddress;
   }
 
-  function send() external {
-    require(token.balanceOf(address(this)) > 1, 'FausetError: Empty');
+  function requestTokens() external {
+    require(token.balanceOf(address(this)) > DRIP_AMOUNT, 'FausetError: Empty');
     require(
-      nextRequestAt[msg.sender] < block.timestamp,
-      'FaucetError: Try again later'
+      !drippedList[msg.sender],
+      'FaucetError: You have already got KuwaCoin before'
     );
 
-    nextRequestAt[msg.sender] = block.timestamp + (5 minutes);
-    token.transfer(msg.sender, faucetDripAmount * 10**token.decimals());
+    drippedList[msg.sender] = true;
+    token.transfer(msg.sender, DRIP_AMOUNT * 10**token.decimals());
   }
 }
