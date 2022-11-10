@@ -13,6 +13,8 @@
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.8.0",
     "svelte": "^3.44.0",
     "svelte-check": "^2.7.1",
     "svelte-preprocess": "^4.10.6",
@@ -22,6 +24,8 @@
   },
   "dependencies": {
     "@kidonng/daisyui": "^2.31.0",
+    "@unocss/preset-typography": "^0.46.4",
+    "@unocss/reset": "^0.46.4",
     "unocss": "^0.45.30",
     "unocss-preset-daisy": "^1.2.0"
   }
