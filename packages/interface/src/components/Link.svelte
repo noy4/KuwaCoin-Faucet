@@ -3,6 +3,6 @@
   export let to = ''
 </script>
 
-<a href="{base}{to}">
+<a href="{base}{to}" {...$$restProps}>
   <slot />
 </a>

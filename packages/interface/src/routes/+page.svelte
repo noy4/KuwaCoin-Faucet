@@ -1,6 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths'
-  const withBase = (path: string) => base + path
+  import Link from '$components/Link.svelte'
 
   const stories = [
     {
@@ -51,7 +51,7 @@
 {#each stories as story, i}
   <div class:bg-base-300={i % 2 === 1}>
     <div
-      class="px-4 py-8 text-center flex flex-col md:flex-row md:gap-4 lg:gap-12 max-w-5xl mx-auto"
+      class="px-4 py-8 text-center flex flex-col md:flex-row md:gap-4 lg:gap-12 max-w-5xl mx-auto md:flex-row-reverse"
       class:md:flex-row-reverse={i % 2 === 1}
     >
       <div class="not-prose max-w-sm mx-auto">
@@ -75,12 +75,12 @@
       <h1 class="mb-5 text-5xl font-bold">Kuwa Coin</h1>
       <p class="mb-5">欲望を叶える禁断の力</p>
       <div class="grid grid-cols-2 gap-2">
-        <a href={withBase('/blog/guide')}>
-          <button class="btn btn-outline w-full"> Guide </button>
-        </a>
-        <a href={withBase('/faucet')}>
-          <button class="btn btn-primary"> Get it now </button>
-        </a>
+        <Link to="/blog/guide">
+          <button class="btn btn-outline w-full">Guide</button>
+        </Link>
+        <Link to="/faucet">
+          <button class="btn btn-primary">Get it now</button>
+        </Link>
       </div>
     </div>
   </div>
@@ -92,10 +92,9 @@
   <div>
     <span class="text-2xl font-bold">桑</span>
     <div class="grid grid-flow-col gap-4">
-      <a href={withBase('/faucet')} class="link link-hover">Get KuwaCoin</a>
-      <a href={withBase('/data')} class="link link-hover">Data</a>
-      <a href={withBase('/blog/developer')} class="link link-hover">Developer</a
-      >
+      <Link to="/faucet" class="link link-hover">Get KuwaCoin</Link>
+      <Link to="/data" class="link link-hover">Data</Link>
+      <Link to="/blog/developer" class="link link-hover">Developer</Link>
     </div>
   </div>
   <div>
