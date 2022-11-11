@@ -49,9 +49,9 @@
 </div>
 
 {#each stories as story, i}
-  <div class:bg-base-300={i % 2 === 1} class="bg-base-300">
+  <div class:bg-base-300={i % 2 === 1}>
     <div
-      class="px-4 py-8 text-center flex flex-col md:flex-row md:gap-4 lg:gap-12 max-w-5xl mx-auto md:flex-row-reverse"
+      class="px-4 py-8 text-center flex flex-col md:flex-row md:gap-4 lg:gap-12 max-w-5xl mx-auto"
       class:md:flex-row-reverse={i % 2 === 1}
     >
       <div class="not-prose max-w-sm mx-auto">

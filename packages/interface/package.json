@@ -11,6 +11,7 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
+    "@iconify-json/tabler": "^1.1.45",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "prettier": "^2.7.1",
@@ -24,7 +25,6 @@
   },
   "dependencies": {
     "@kidonng/daisyui": "^2.31.0",
-    "@unocss/preset-typography": "^0.46.4",
     "@unocss/reset": "^0.46.4",
     "unocss": "^0.45.30",
     "unocss-preset-daisy": "^1.2.0"
