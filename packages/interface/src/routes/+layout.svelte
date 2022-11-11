@@ -4,9 +4,13 @@
   import Header from '$components/Header.svelte'
   import { base } from '$app/paths'
   import { page } from '$app/stores'
+
+  $: isHome = $page.url.pathname === (base || '/')
 </script>
 
-{#if $page.url.pathname !== (base || '/')}
+{#if isHome}
+  <Header class="absolute bg-transparent shadow-none" />
+{:else}
   <Header />
 {/if}
 

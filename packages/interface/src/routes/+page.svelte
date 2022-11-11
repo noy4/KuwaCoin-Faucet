@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import Link from '$components/Link.svelte'
 
   const stories = [
@@ -24,27 +23,19 @@
   ]
 </script>
 
-<div
-  class="hero min-h-screen not-prose"
-  style="background-image: url(coin.jpeg);"
->
+<div class="hero min-h-screen" style="background-image: url(coin.jpeg);">
   <div class="hero-overlay bg-opacity-60" />
   <div class="hero-content text-center text-neutral-content">
-    <div class="max-w-md">
+    <div>
       <h1 class="mb-5 text-5xl font-bold">Kuwa Coin</h1>
       <p class="mb-5">欲望を叶える禁断の力</p>
-      <a href="{base}/faucet">
-        <button class="btn btn-primary not-prose"> Get it now </button>
-      </a>
+      <Link to="/faucet">
+        <button class="btn btn-primary">Get it now</button>
+      </Link>
     </div>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 1024 1024"
-      class="absolute bottom-0 w-12 h-12 fill-current animate-bounce"
-      ><path
-        d="M831.872 340.864L512 652.672L192.128 340.864a30.592 30.592 0 0 0-42.752 0a29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728a30.592 30.592 0 0 0-42.752 0z"
-      /></svg
-    >
+    <span
+      class="i-tabler-chevron-down absolute bottom-0 animate-bounce w-12 h-12"
+    />
   </div>
 </div>
 
@@ -57,7 +48,7 @@
       <div class="not-prose max-w-sm mx-auto">
         <img src={story.image} alt={story.image} class="rounded-lg" />
       </div>
-      <div class="flex-1 mb-6">
+      <div class="flex-1 mb-8">
         <h3 class="text-xl font-bold mt-6 mb-4">{story.title}</h3>
         <p>{story.description}</p>
       </div>
@@ -65,10 +56,7 @@
   </div>
 {/each}
 
-<div
-  class="hero min-h-[50vh] not-prose"
-  style="background-image: url(coin.jpeg);"
->
+<div class="hero min-h-[50vh]" style="background-image: url(coin.jpeg);">
   <div class="hero-overlay bg-opacity-60" />
   <div class="hero-content text-center text-neutral-content">
     <div class="max-w-md">
@@ -86,9 +74,7 @@
   </div>
 </div>
 
-<footer
-  class="footer footer-center p-10 bg-base-200 text-base-content rounded not-prose"
->
+<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
   <div>
     <span class="text-2xl font-bold">桑</span>
     <div class="grid grid-flow-col gap-4">
