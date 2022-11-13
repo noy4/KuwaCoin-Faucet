@@ -1,12 +1,14 @@
 <script lang="ts">
+  import { kuwaCoin, wallet } from '$lib/contracts'
   import { theme } from '$lib/theme'
   import { shortenAddress } from '$lib/utils'
   import { ethers } from 'ethers'
-  import { defaultEvmStores, signerAddress } from 'svelte-ethers-store'
-  import Link from './Link.svelte'
-  import { kuwaCoin, wallet } from '$lib/contracts'
   import { formatEther } from 'ethers/lib/utils'
   import { onMount } from 'svelte'
+  import { defaultEvmStores, signerAddress } from 'svelte-ethers-store'
+  import Link from './Link.svelte'
+  import { base } from '$app/paths'
+  import { page } from '$app/stores'
   // @ts-ignore
   import { Jazzicon } from 'svelte-ethers-store/components'
 
@@ -53,6 +55,7 @@
     defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
   }
 
+  $: isHome = $page.url.pathname === (base || '/')
   $: balance = $kuwaCoin?.balanceOf($signerAddress)
 
   const updateBalance = (...args) => {
@@ -93,8 +96,8 @@
         class="btn btn-primary mt-4 normal-case w-32"
         on:click={disconnect}
       >
-        Logout</label
-      >
+        Logout
+      </label>
     {/if}
   </label>
 </label>
@@ -127,7 +130,10 @@
 
 <header class="navbar gap-2 {className}">
   <div class="flex-1">
-    <button class="btn btn-ghost text-xl normal-case">
+    <button
+      class="btn btn-ghost text-xl normal-case"
+      class:light-text-neutral-content={isHome}
+    >
       <Link to="/">桑</Link>
     </button>
   </div>
@@ -170,7 +176,11 @@
 
   <div class="dropdown dropdown-end">
     <!-- svelte-ignore a11y-label-has-associated-control a11y-no-noninteractive-tabindex -->
-    <label tabindex="0" class="btn btn-ghost text-3xl px-2">
+    <label
+      tabindex="0"
+      class="btn btn-ghost text-3xl px-2"
+      class:light-text-neutral-content={isHome}
+    >
       <div class="i-tabler-menu-2" />
     </label>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->

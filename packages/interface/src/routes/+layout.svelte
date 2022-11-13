@@ -8,21 +8,24 @@
   $: isHome = $page.url.pathname === (base || '/')
 </script>
 
+<svelte:head>
+  <title>KuwaCoin</title>
+  <meta name="description" content="欲望を叶える禁断の力" />
+</svelte:head>
+
 {#if isHome}
   <Header class="absolute bg-transparent shadow-none" />
 {:else}
   <Header />
 {/if}
 
-<svelte:head>
-  <title>KuwaCoin</title>
-  <meta name="description" content="欲望を叶える禁断の力" />
-</svelte:head>
-
 <slot />
 
 <style uno:preflights uno:safelist global>
   :root {
     @apply bg-base-200;
+  }
+  [data-theme='light'] .light-text-neutral-content {
+    @apply text-neutral-content;
   }
 </style>

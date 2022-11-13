@@ -64,7 +64,9 @@
       <p class="mb-5">欲望を叶える禁断の力</p>
       <div class="grid grid-cols-2 gap-2">
         <Link to="/blog/guide">
-          <button class="btn btn-outline w-full">Guide</button>
+          <button class="btn btn-outline light-text-neutral-content w-full">
+            Guide
+          </button>
         </Link>
         <Link to="/faucet">
           <button class="btn btn-primary">Get it now</button>
