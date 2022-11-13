@@ -9,9 +9,6 @@
   import Link from '../Link.svelte'
   import { AccountBadge, ImportModal, WalletModal } from './components'
 
-  let className = 'bg-base-100 shadow'
-  export { className as class }
-
   let privateKey = ''
   let importErrorMessage = ''
   let importModal: HTMLInputElement
@@ -68,7 +65,11 @@
   {importErrorMessage}
 />
 
-<header class="navbar gap-2 {className}">
+<header
+  class="navbar gap-2 {isHome ? 'bg-transparent' : 'bg-base-100'}"
+  class:absolute={isHome}
+  class:shadow={!isHome}
+>
   <div class="flex-1">
     <button
       class="btn btn-ghost text-xl normal-case"

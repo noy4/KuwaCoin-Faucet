@@ -16,8 +16,11 @@ const config: UserConfig = {
       transformers: [transformerDirectives()],
       presets: [presetUno(), presetDaisy(), presetTypography(), presetIcons()],
       safelist: [
-        ...'bg-base-300 hidden'.split(' '),
+        ...'bg-base-300 hidden bg-transparent bg-base-100 absolute shadow-none'.split(
+          ' '
+        ),
         ...[...Array(10)].map((_, i) => `mt-${i}`),
+        ...['home', 'coin', 'book'].map((v) => `i-tabler-${v}`),
       ],
     }),
     sveltekit(),
