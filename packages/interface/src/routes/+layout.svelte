@@ -1,7 +1,7 @@
 <script lang="ts">
   import '@unocss/reset/tailwind.css'
   import '@kidonng/daisyui/index.css'
-  import Header from '$components/Header.svelte'
+  import { Header } from '$components'
   import { base } from '$app/paths'
   import { page } from '$app/stores'
 
