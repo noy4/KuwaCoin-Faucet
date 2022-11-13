@@ -14,14 +14,17 @@ contract Faucet {
     owner = _ownerAddress;
   }
 
-  function requestTokens() external {
-    require(token.balanceOf(address(this)) > DRIP_AMOUNT, 'FausetError: Empty');
+  function requestTokens(address _to) external {
     require(
-      !drippedList[msg.sender],
+      token.balanceOf(address(this)) > DRIP_AMOUNT * 10**token.decimals(),
+      'FausetError: Empty'
+    );
+    require(
+      !drippedList[_to],
       'FaucetError: You have already got KuwaCoin before'
     );
 
-    drippedList[msg.sender] = true;
-    token.transfer(msg.sender, DRIP_AMOUNT * 10**token.decimals());
+    drippedList[_to] = true;
+    token.transfer(_to, DRIP_AMOUNT * 10**token.decimals());
   }
 }

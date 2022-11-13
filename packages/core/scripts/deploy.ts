@@ -17,17 +17,15 @@ async function main() {
   )
 
   //
-  const accounts = await ethers.getSigners()
-  const deployer = accounts[0].address
+  const [owner] = await ethers.getSigners()
 
   const KuwaCoin = await ethers.getContractFactory('KuwaCoin')
-  const kuwaCoin = await KuwaCoin.deploy(ethers.utils.parseEther('2000'))
+  const kuwaCoin = await KuwaCoin.deploy(ethers.utils.parseEther('100000'))
 
   const Faucet = await ethers.getContractFactory('Faucet')
-  const faucet = await Faucet.deploy(kuwaCoin.address, deployer)
+  const faucet = await Faucet.deploy(kuwaCoin.address, owner.address)
 
-  await kuwaCoin.transfer(faucet.address, ethers.utils.parseEther('2000'))
-  console.log('balance:', await kuwaCoin.balanceOf(faucet.address))
+  await kuwaCoin.transfer(faucet.address, ethers.utils.parseEther('100000'))
 }
 
 main().catch((error) => {
