@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-  <title>KuwaCoin</title>
+  <title>Kuwa Coin</title>
   <meta name="description" content="欲望を叶える禁断の力" />
 </svelte:head>
 
@@ -24,7 +24,7 @@
 <slot />
 
 {#if !isHome}
-  <nav class="btm-nav">
+  <nav class="btm-nav border-t border-t-base-200 max-w-3xl mx-auto">
     {#each bottomNavItems as item}
       <Link to={item.to} class={item.to === $page.url.pathname ? 'active' : ''}>
         <span class="i-tabler-{item.icon} text-xl" />
@@ -32,6 +32,7 @@
       </Link>
     {/each}
   </nav>
+  <div class="h-16" />
 {/if}
 
 <style uno:preflights uno:safelist global>

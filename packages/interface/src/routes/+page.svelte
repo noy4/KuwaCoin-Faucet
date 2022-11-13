@@ -45,7 +45,7 @@
       class="px-4 py-8 text-center flex flex-col md:flex-row md:gap-4 lg:gap-12 max-w-5xl mx-auto md:flex-row-reverse"
       class:md:flex-row-reverse={i % 2 === 1}
     >
-      <div class="not-prose max-w-sm mx-auto">
+      <div class="max-w-sm mx-auto">
         <img src={story.image} alt={story.image} class="rounded-lg" />
       </div>
       <div class="flex-1 mb-8">
