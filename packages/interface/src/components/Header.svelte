@@ -1,13 +1,14 @@
 <script lang="ts">
   import { theme } from '$lib/theme'
   import { shortenAddress } from '$lib/utils'
-  import { signerAddress, defaultEvmStores } from 'svelte-ethers-store'
+  import { ethers } from 'ethers'
+  import { defaultEvmStores, signerAddress } from 'svelte-ethers-store'
   import Link from './Link.svelte'
-  import { ethers, type Wallet } from 'ethers'
+  import { kuwaCoin, wallet } from '$lib/contracts'
+  import { formatEther } from 'ethers/lib/utils'
+  import { onMount } from 'svelte'
   // @ts-ignore
   import { Jazzicon } from 'svelte-ethers-store/components'
-  import { writable } from 'svelte/store'
-  import { onMount } from 'svelte'
 
   let className = 'bg-base-100 shadow'
   export { className as class }
@@ -16,15 +17,12 @@
   let importErrorMessage = ''
   let importModal: HTMLInputElement
 
-  const wallet = writable<Wallet | undefined>()
-
   async function createWallet() {
-    const _wallet = ethers.Wallet.createRandom()
-    localStorage.privateKey = _wallet.privateKey
     const provider = new ethers.providers.JsonRpcProvider()
-    const signer = new ethers.Wallet(_wallet.privateKey, provider)
-    wallet.set(signer)
-    defaultEvmStores.setProvider(signer.provider, signer.address)
+    const _wallet = ethers.Wallet.createRandom().connect(provider)
+    localStorage.privateKey = _wallet.privateKey
+    wallet.set(_wallet)
+    defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
   }
 
   function disconnect() {
@@ -37,10 +35,10 @@
     importErrorMessage = ''
     const provider = new ethers.providers.JsonRpcProvider()
     try {
-      const signer = new ethers.Wallet(privateKey, provider)
-      wallet.set(signer)
-      localStorage.privateKey = signer.privateKey
-      defaultEvmStores.setProvider(signer.provider, signer.address)
+      const _wallet = new ethers.Wallet(privateKey, provider)
+      wallet.set(_wallet)
+      localStorage.privateKey = _wallet.privateKey
+      defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
       importModal.checked = false
     } catch (e) {
       importErrorMessage = 'Invalid private key'
@@ -50,9 +48,25 @@
   async function connectOnMount() {
     if (!localStorage.privateKey) return
     const provider = new ethers.providers.JsonRpcProvider()
-    const signer = new ethers.Wallet(localStorage.privateKey, provider)
-    wallet.set(signer)
-    defaultEvmStores.setProvider(signer.provider, signer.address)
+    const _wallet = new ethers.Wallet(localStorage.privateKey, provider)
+    wallet.set(_wallet)
+    defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
+  }
+
+  $: balance = $kuwaCoin?.balanceOf($signerAddress)
+
+  const updateBalance = (...args) => {
+    if (!$wallet || !$kuwaCoin) return
+    console.log('Transfer:', {
+      from: args[0].slice(2, 5),
+      to: args[1].slice(2, 5),
+      amount: formatEther(args[2]),
+      txHash: args[3].transactionHash.slice(2, 5),
+    })
+    balance = $kuwaCoin.balanceOf($wallet.address)
+  }
+  $: if ($kuwaCoin) {
+    $kuwaCoin.on('Transfer', updateBalance)
   }
 
   onMount(() => {
@@ -120,9 +134,11 @@
 
   {#if $signerAddress}
     <div class="bg-base-200 p-0.5 rounded-xl">
-      <!-- {#await balance then value}
-        <div class="mx-2">{Number((+formatEther(value)).toFixed(4))} ETH</div>
-      {/await} -->
+      {#await balance then value}
+        <div class="mx-2">
+          {value ? formatEther(value) : '-'} <span class="text-xs">KWC</span>
+        </div>
+      {/await}
       <label
         for="wallet-modal"
         class="btn btn-ghost btn-sm normal-case bg-base-100 rounded-xl gap-2"
