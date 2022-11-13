@@ -15,7 +15,10 @@ const config: UserConfig = {
       mode: 'svelte-scoped',
       transformers: [transformerDirectives()],
       presets: [presetUno(), presetDaisy(), presetTypography(), presetIcons()],
-      safelist: 'bg-base-300 hidden'.split(' '),
+      safelist: [
+        ...'bg-base-300 hidden'.split(' '),
+        ...[...Array(10)].map((_, i) => `mt-${i}`),
+      ],
     }),
     sveltekit(),
   ],
