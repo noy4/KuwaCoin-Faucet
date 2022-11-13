@@ -14,8 +14,10 @@
     "@iconify-json/tabler": "^1.1.45",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
+    "@types/marked": "^4.0.7",
     "prettier": "^2.7.1",
     "prettier-plugin-svelte": "^2.8.0",
+    "sass": "^1.56.1",
     "svelte": "^3.44.0",
     "svelte-check": "^2.7.1",
     "svelte-preprocess": "^4.10.6",
@@ -27,6 +29,7 @@
     "@kidonng/daisyui": "^2.31.0",
     "@unocss/reset": "^0.46.4",
     "ethers": "^5.7.2",
+    "marked": "^4.2.2",
     "svelte-ethers-store": "^2.5.8",
     "unocss": "^0.45.30",
     "unocss-preset-daisy": "^1.2.0"
