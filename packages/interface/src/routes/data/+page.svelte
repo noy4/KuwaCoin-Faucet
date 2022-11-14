@@ -1,12 +1,10 @@
 <script lang="ts">
-  import { Card } from '$components'
+  import { Card, Jazzicon } from '$components'
   import { kuwaCoin, KUWA_COIN_ADDRESS, wallet } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
   import { formatEther } from 'ethers/lib/utils'
-  // @ts-ignore
-  import { Jazzicon } from 'svelte-ethers-store/components'
 
   let isTransfersLoading = false
   let transfers: TransferEvent[] = []
@@ -73,7 +71,7 @@
               </td>
               <td>
                 <div class="flex items-center gap-2">
-                  <Jazzicon size="18" address={item.args.from} />
+                  <Jazzicon address={item.args.from} />
                   {shortenAddress(item.args.from)}
                   {#if item.args.from === $wallet?.address}
                     <div class="badge badge-sm badge-ghost">You</div>
@@ -82,7 +80,7 @@
               </td>
               <td>
                 <div class="flex items-center gap-2">
-                  <Jazzicon size="18" address={item.args.to} />
+                  <Jazzicon address={item.args.to} />
                   {shortenAddress(item.args.to)}
                   {#if item.args.to === $wallet?.address}
                     <div class="badge badge-sm badge-ghost">You</div>

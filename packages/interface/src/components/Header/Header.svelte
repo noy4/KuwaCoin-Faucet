@@ -1,11 +1,10 @@
 <script lang="ts">
   import { base } from '$app/paths'
   import { page } from '$app/stores'
-  import { wallet } from '$lib/contracts'
+  import { provider, wallet } from '$lib/contracts'
   import { theme } from '$lib/theme'
   import { ethers } from 'ethers'
   import { onMount } from 'svelte'
-  import { defaultEvmStores } from 'svelte-ethers-store'
   import Link from '../Link.svelte'
   import { AccountBadge, ImportModal, WalletModal } from './components'
 
@@ -14,27 +13,22 @@
   let importModal: HTMLInputElement
 
   async function createWallet() {
-    const provider = new ethers.providers.JsonRpcProvider()
     const _wallet = ethers.Wallet.createRandom().connect(provider)
     localStorage.privateKey = _wallet.privateKey
     wallet.set(_wallet)
-    defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
   }
 
   function disconnect() {
-    defaultEvmStores.disconnect()
     wallet.set(undefined)
     localStorage.removeItem('privateKey')
   }
 
   function importWallet() {
     importErrorMessage = ''
-    const provider = new ethers.providers.JsonRpcProvider()
     try {
       const _wallet = new ethers.Wallet(privateKey, provider)
       wallet.set(_wallet)
       localStorage.privateKey = _wallet.privateKey
-      defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
       importModal.checked = false
     } catch (e) {
       importErrorMessage = 'Invalid private key'
@@ -43,10 +37,8 @@
 
   async function connectOnMount() {
     if (!localStorage.privateKey) return
-    const provider = new ethers.providers.JsonRpcProvider()
     const _wallet = new ethers.Wallet(localStorage.privateKey, provider)
     wallet.set(_wallet)
-    defaultEvmStores.setProvider(_wallet.provider, _wallet.address)
   }
 
   $: isHome = $page.url.pathname === (base || '/')

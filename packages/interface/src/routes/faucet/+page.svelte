@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Jazzicon } from '$components'
   import Card from '$components/Card.svelte'
   import { faucet, FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
@@ -6,9 +7,7 @@
   import { shortenAddress } from '$lib/utils'
   import type { BigNumber } from 'ethers'
   import { formatEther } from 'ethers/lib/utils'
-  import { signerAddress } from 'svelte-ethers-store'
   // @ts-ignore
-  import { Jazzicon } from 'svelte-ethers-store/components'
 
   let balance: BigNumber | undefined
   let isBalanceLoading = false
@@ -34,7 +33,7 @@
     }
   }
 
-  $: toAddress = $signerAddress
+  $: toAddress = $wallet?.address || ''
 
   async function getBalance() {
     if (!$kuwaCoin || !$wallet) {
@@ -55,7 +54,7 @@
     isTransfersLoading = false
   }
 
-  function onTransfer(...args) {
+  function onTransfer(...args: any[]) {
     if (!$wallet || !$kuwaCoin) return
     console.log('Transfer:', {
       from: args[0].slice(2, 5),
@@ -143,7 +142,7 @@
               </td>
               <td>
                 <div class="flex items-center gap-2">
-                  <Jazzicon size="18" address={item.args.to} />
+                  <Jazzicon address={item.args.to} />
                   {shortenAddress(item.args.to)}
                   {#if item.args.to === $wallet?.address}
                     <div class="badge badge-sm badge-ghost">You</div>

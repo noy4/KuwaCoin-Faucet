@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { wallet, kuwaCoin } from '$lib/contracts'
+  import { Jazzicon } from '$components'
+  import { kuwaCoin, wallet } from '$lib/contracts'
   import { shortenAddress } from '$lib/utils'
   import { formatEther } from 'ethers/lib/utils'
-  // @ts-ignore
-  import { Jazzicon } from 'svelte-ethers-store/components'
 
   export let createWallet: () => void
 
@@ -37,7 +36,7 @@
       class="btn btn-ghost btn-sm normal-case bg-base-100 rounded-xl gap-2"
     >
       <div>{shortenAddress($wallet.address)}</div>
-      <Jazzicon size="18" address={$wallet.address} />
+      <Jazzicon />
     </label>
   </div>
 {:else}
