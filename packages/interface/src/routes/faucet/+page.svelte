@@ -4,11 +4,14 @@
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
+  import type { BigNumber } from 'ethers'
   import { formatEther } from 'ethers/lib/utils'
   import { signerAddress } from 'svelte-ethers-store'
   // @ts-ignore
   import { Jazzicon } from 'svelte-ethers-store/components'
 
+  let balance: BigNumber | undefined
+  let isBalanceLoading = false
   let toAddress = ''
   let isRequesting = false
   let requestTokensErrorMessage = ''
@@ -31,18 +34,16 @@
     }
   }
 
-  $: balance = $kuwaCoin?.balanceOf($signerAddress)
   $: toAddress = $signerAddress
 
-  function updateBalance(...args) {
-    if (!$wallet || !$kuwaCoin) return
-    console.log('Transfer:', {
-      from: args[0].slice(2, 5),
-      to: args[1].slice(2, 5),
-      amount: formatEther(args[2]),
-      txHash: args[3].transactionHash.slice(2, 5),
-    })
-    balance = $kuwaCoin.balanceOf($wallet.address)
+  async function getBalance() {
+    if (!$kuwaCoin || !$wallet) {
+      balance = undefined
+      return
+    }
+    isBalanceLoading = true
+    balance = await $kuwaCoin.balanceOf($wallet.address)
+    isBalanceLoading = false
   }
 
   async function getTransfers() {
@@ -54,19 +55,37 @@
     isTransfersLoading = false
   }
 
-  $: if ($kuwaCoin) {
-    $kuwaCoin.on('Transfer', updateBalance)
+  function onTransfer(...args) {
+    if (!$wallet || !$kuwaCoin) return
+    console.log('Transfer:', {
+      from: args[0].slice(2, 5),
+      to: args[1].slice(2, 5),
+      amount: formatEther(args[2]),
+      txHash: args[3].transactionHash.slice(2, 5),
+    })
+    getBalance()
     getTransfers()
   }
+
+  $: if ($kuwaCoin) {
+    console.log('$kuwaCoin updated')
+    $kuwaCoin.on('Transfer', onTransfer)
+    getBalance()
+    getTransfers()
+  }
+
+  $: if (!$wallet) balance = undefined
 </script>
 
 <section class="flex flex-col items-center px-4">
   <h3 class="text-xl font-bold mt-8">You have</h3>
   <div class="mt-2">
     <span class="text-5xl font-semibold">
-      {#await balance then value}
-        {value ? formatEther(value).toLocaleString() : '-'}
-      {/await}
+      {#if isBalanceLoading && !balance}
+        -
+      {:else}
+        {balance ? formatEther(balance).toLocaleString() : '-'}
+      {/if}
     </span>
     <span class="font-bold">KWC</span>
   </div>

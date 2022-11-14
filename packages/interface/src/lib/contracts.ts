@@ -1,6 +1,6 @@
-import { KuwaCoin__factory, Faucet__factory } from '$lib/typechain-types'
+import { Faucet__factory, KuwaCoin__factory } from '$lib/typechain-types'
 import { ethers, type Wallet } from 'ethers'
-import { provider, signer } from 'svelte-ethers-store'
+import { provider } from 'svelte-ethers-store'
 import { derived, writable } from 'svelte/store'
 
 export const DEV_ADDRESS = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
