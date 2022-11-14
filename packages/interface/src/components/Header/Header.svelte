@@ -96,6 +96,7 @@
       class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
     >
       <li><Link to="/data">Data</Link></li>
+      <li><Link to="/developer">Developer</Link></li>
       <li>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class:hidden={$theme === 'dark'} on:click={theme.setDark}>
