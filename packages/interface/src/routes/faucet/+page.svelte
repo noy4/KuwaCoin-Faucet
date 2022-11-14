@@ -1,12 +1,19 @@
 <script lang="ts">
   import Card from '$components/Card.svelte'
-  import { faucet, kuwaCoin, wallet } from '$lib/contracts'
+  import { faucet, FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
+  import { dayjs } from '$lib/dayjs'
+  import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
+  import { shortenAddress } from '$lib/utils'
   import { formatEther } from 'ethers/lib/utils'
   import { signerAddress } from 'svelte-ethers-store'
+  // @ts-ignore
+  import { Jazzicon } from 'svelte-ethers-store/components'
 
   let toAddress = ''
   let isRequesting = false
   let requestTokensErrorMessage = ''
+  let isTransfersLoading = false
+  let transfers: TransferEvent[] = []
 
   async function requestKuwaCoin() {
     if (!$wallet) return
@@ -27,7 +34,7 @@
   $: balance = $kuwaCoin?.balanceOf($signerAddress)
   $: toAddress = $signerAddress
 
-  const updateBalance = (...args) => {
+  function updateBalance(...args) {
     if (!$wallet || !$kuwaCoin) return
     console.log('Transfer:', {
       from: args[0].slice(2, 5),
@@ -37,8 +44,19 @@
     })
     balance = $kuwaCoin.balanceOf($wallet.address)
   }
+
+  async function getTransfers() {
+    if (!$kuwaCoin) return
+    isTransfersLoading = true
+    transfers = await $kuwaCoin.queryFilter(
+      $kuwaCoin.filters.Transfer(FAUCET_ADDRESS)
+    )
+    isTransfersLoading = false
+  }
+
   $: if ($kuwaCoin) {
     $kuwaCoin.on('Transfer', updateBalance)
+    getTransfers()
   }
 </script>
 
@@ -78,4 +96,48 @@
       </div>
     </div>
   </Card>
+
+  <h2 class="text-3xl font-bold mt-12">Logs</h2>
+
+  <div class="overflow-x-auto max-w-md w-full mx-auto not-prose mt-4 z-0">
+    <table class="table table-compact w-full">
+      <thead>
+        <tr>
+          <th>Age</th>
+          <th>To</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {#if isTransfersLoading && transfers.length === 0}
+          <tr>loading...</tr>
+        {:else}
+          {#each [...transfers].reverse() as item}
+            <tr>
+              <td>
+                {#await item.getBlock()}
+                  loading...
+                {:then block}
+                  {dayjs(block.timestamp * 1000).fromNow(true)}
+                {/await}
+              </td>
+              <td>
+                <div class="flex items-center gap-2">
+                  <Jazzicon size="18" address={item.args.to} />
+                  {shortenAddress(item.args.to)}
+                  {#if item.args.to === $wallet?.address}
+                    <div class="badge badge-sm badge-ghost">You</div>
+                  {/if}
+                </div>
+              </td>
+              <td>{formatEther(item.args.value)}</td>
+            </tr>
+          {/each}
+        {/if}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="h-16" />
 </section>
