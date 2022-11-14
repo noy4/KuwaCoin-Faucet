@@ -6,8 +6,8 @@
   import { page } from '$app/stores'
 
   const bottomNavItems = [
-    { icon: 'home', label: 'Home', to: '/' },
-    { icon: 'coin', label: 'Coin', to: '/faucet' },
+    { icon: 'coin', label: 'Get', to: '/faucet' },
+    { icon: 'send', label: 'Send', to: '/send' },
     { icon: 'book', label: 'Guide', to: '/guide' },
   ]
 

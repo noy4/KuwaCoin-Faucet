@@ -21,7 +21,7 @@ const config: UserConfig = {
         ),
         ...[...Array(10)].map((_, i) => `mt-${i}`),
         ...[...Array(10)].map((_, i) => `p-${i}`),
-        ...['home', 'coin', 'book'].map((v) => `i-tabler-${v}`),
+        ...['coin', 'send', 'book'].map((v) => `i-tabler-${v}`),
       ],
     }),
     sveltekit(),

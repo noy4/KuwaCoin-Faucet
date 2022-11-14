@@ -89,33 +89,31 @@
     <span class="font-bold">KWC</span>
   </div>
 
-  <Card class="mt-8">
-    <div class="card-body gap-3">
-      <div class="form-control w-full max-w-xs">
-        <label for="to-address" class="label">
-          <span class="">Your wallet address</span>
-        </label>
-        <input
-          id="to-address"
-          placeholder="Input your wallet address"
-          bind:value={toAddress}
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <p class="text-error">{requestTokensErrorMessage}</p>
-      <div class="card-actions justify-end">
-        <button
-          class="btn btn-primary normal-case"
-          class:loading={isRequesting}
-          on:click={requestKuwaCoin}
-        >
-          Give me KWC
-        </button>
-      </div>
+  <Card class="mt-8 p-8">
+    <div class="form-control w-full max-w-xs">
+      <label for="to-address" class="label">
+        <span class="">Your wallet address:</span>
+      </label>
+      <input
+        id="to-address"
+        placeholder="Input your wallet address"
+        bind:value={toAddress}
+        class="input input-bordered w-full max-w-xs"
+      />
+    </div>
+    <p class="text-error">{requestTokensErrorMessage}</p>
+    <div class="card-actions justify-end mt-4">
+      <button
+        class="btn btn-primary normal-case"
+        class:loading={isRequesting}
+        on:click={requestKuwaCoin}
+      >
+        Give me KWC
+      </button>
     </div>
   </Card>
 
-  <h2 class="text-3xl font-bold mt-12">Logs</h2>
+  <h2 class="text-3xl font-bold mt-12">Log</h2>
 
   <div class="overflow-x-auto max-w-md w-full mx-auto not-prose mt-4 z-0">
     <table class="table table-compact w-full">
