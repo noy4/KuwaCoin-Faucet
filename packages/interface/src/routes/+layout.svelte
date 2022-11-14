@@ -42,4 +42,7 @@
   [data-theme='light'] .light-text-neutral-content {
     @apply text-neutral-content;
   }
+  .table th:first-child {
+    @apply static;
+  }
 </style>
