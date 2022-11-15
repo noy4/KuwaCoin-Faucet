@@ -1,16 +1,18 @@
 import { derived, writable, type Readable } from 'svelte/store'
 
+type Status = 'success' | 'error'
 type Notification = {
   id: string
+  status: Status
   message: string
 }
 
 function createNotificationStore() {
   const _notifications = writable<Notification[]>([])
 
-  function send(message: string) {
+  function send(args: { status: Status; message: string }) {
     _notifications.update((state) => {
-      return [...state, { id: crypto.randomUUID(), message }]
+      return [...state, { id: crypto.randomUUID(), ...args }]
     })
   }
 
@@ -30,6 +32,8 @@ function createNotificationStore() {
   return {
     subscribe: notifications.subscribe,
     send,
+    success: (message: string) => send({ status: 'success', message }),
+    error: (message: string) => send({ status: 'error', message }),
   }
 }
 

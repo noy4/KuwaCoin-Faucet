@@ -16,12 +16,14 @@ const config: UserConfig = {
       transformers: [transformerDirectives()],
       presets: [presetUno(), presetDaisy(), presetTypography(), presetIcons()],
       safelist: [
-        ...'bg-base-300 hidden bg-transparent bg-base-100 absolute shadow-none'.split(
+        ...'bg-base-300 hidden bg-transparent bg-base-100 absolute shadow-none bg-success bg-error'.split(
           ' '
         ),
         ...[...Array(10)].map((_, i) => `mt-${i}`),
         ...[...Array(10)].map((_, i) => `p-${i}`),
-        ...['coin', 'send', 'book'].map((v) => `i-tabler-${v}`),
+        ...['coin', 'send', 'book', 'circle-check', 'alert-circle'].map(
+          (v) => `i-tabler-${v}`
+        ),
       ],
     }),
     sveltekit(),

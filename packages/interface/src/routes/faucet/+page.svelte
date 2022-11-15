@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Card } from '$components'
-  import { kuwaCoin, wallet } from '$lib/contracts'
+  import { faucet, kuwaCoin, wallet } from '$lib/contracts'
   import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
   import { formatEther } from 'ethers/lib/utils'
@@ -13,23 +13,21 @@
 
   async function requestKuwaCoin() {
     if (!$wallet) return
-    // isRequesting = true
+    isRequesting = true
     requestTokensErrorMessage = ''
-    notifications.send('KuwaCoin を獲得しました')
 
-    // try {
-    //   const tx = await faucet.requestTokens($wallet.address)
-    //   await tx.wait()
-    //   isSucceeded = true
-    // } catch (error) {
-    //   console.error(error.error.reason)
-    //   requestTokensErrorMessage = 'Something went wrong'
-    // } finally {
-    //   isRequesting = false
-    // }
+    try {
+      const tx = await faucet.requestTokens($wallet.address)
+      await tx.wait()
+      notifications.success('KuwaCoin を獲得しました')
+    } catch (error: any) {
+      console.error(error.error.reason)
+      notifications.error(error.error.reason)
+      requestTokensErrorMessage = 'Something went wrong'
+    } finally {
+      isRequesting = false
+    }
   }
-
-  $: toAddress = $wallet?.address || ''
 
   async function getBalance() {
     if (!$kuwaCoin || !$wallet) {
@@ -50,6 +48,11 @@
       txHash: args[3].transactionHash.slice(2, 5),
     })
     getBalance()
+  }
+
+  $: {
+    toAddress = $wallet?.address || ''
+    requestTokensErrorMessage = ''
   }
 
   $: if ($kuwaCoin) {
