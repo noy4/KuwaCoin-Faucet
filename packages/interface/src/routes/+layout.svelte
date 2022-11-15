@@ -1,9 +1,9 @@
 <script lang="ts">
-  import '@unocss/reset/tailwind.css'
-  import '@kidonng/daisyui/index.css'
-  import { Header, Link } from '$components'
   import { base } from '$app/paths'
   import { page } from '$app/stores'
+  import { Header, Link, Toast } from '$components'
+  import '@kidonng/daisyui/index.css'
+  import '@unocss/reset/tailwind.css'
 
   const bottomNavItems = [
     { icon: 'coin', label: 'Get', to: '/faucet' },
@@ -20,6 +20,7 @@
 </svelte:head>
 
 <Header />
+<Toast />
 
 <slot />
 

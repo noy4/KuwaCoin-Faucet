@@ -1,6 +1,7 @@
 <script lang="ts">
-  import Card from '$components/Card.svelte'
-  import { faucet, kuwaCoin, wallet } from '$lib/contracts'
+  import { Card } from '$components'
+  import { kuwaCoin, wallet } from '$lib/contracts'
+  import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
   import { formatEther } from 'ethers/lib/utils'
 
@@ -12,18 +13,20 @@
 
   async function requestKuwaCoin() {
     if (!$wallet) return
-    isRequesting = true
+    // isRequesting = true
     requestTokensErrorMessage = ''
+    notifications.send('KuwaCoin を獲得しました')
 
-    try {
-      const tx = await faucet.requestTokens($wallet.address)
-      await tx.wait()
-    } catch (error) {
-      console.error(error.error.reason)
-      requestTokensErrorMessage = 'Something went wrong'
-    } finally {
-      isRequesting = false
-    }
+    // try {
+    //   const tx = await faucet.requestTokens($wallet.address)
+    //   await tx.wait()
+    //   isSucceeded = true
+    // } catch (error) {
+    //   console.error(error.error.reason)
+    //   requestTokensErrorMessage = 'Something went wrong'
+    // } finally {
+    //   isRequesting = false
+    // }
   }
 
   $: toAddress = $wallet?.address || ''
