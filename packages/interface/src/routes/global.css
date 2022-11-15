@@ -1,0 +1,9 @@
+:root {
+  @apply bg-base-200;
+}
+[data-theme='light'] .light-text-neutral-content {
+  @apply text-neutral-content;
+}
+.table th:first-child {
+  @apply static;
+}

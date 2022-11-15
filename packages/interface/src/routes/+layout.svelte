@@ -1,17 +1,8 @@
 <script lang="ts">
-  import { base } from '$app/paths'
-  import { page } from '$app/stores'
-  import { Header, Link, Toast } from '$components'
+  import { BottomNav, Header, Toast } from '$components'
   import '@kidonng/daisyui/index.css'
   import '@unocss/reset/tailwind.css'
-
-  const bottomNavItems = [
-    { icon: 'coin', label: 'Get', to: '/faucet' },
-    { icon: 'send', label: 'Send', to: '/send' },
-    { icon: 'book', label: 'Guide', to: '/guide' },
-  ]
-
-  $: isHome = $page.url.pathname === (base || '/')
+  import './global.css'
 </script>
 
 <svelte:head>
@@ -21,29 +12,7 @@
 
 <Header />
 <Toast />
-
 <slot />
+<BottomNav />
 
-{#if !isHome}
-  <nav class="btm-nav border-t border-t-base-200 max-w-3xl mx-auto">
-    {#each bottomNavItems as item}
-      <Link to={item.to} class={item.to === $page.url.pathname ? 'active' : ''}>
-        <span class="i-tabler-{item.icon} text-xl" />
-        <span class="btm-nav-label text-2.5">{item.label}</span>
-      </Link>
-    {/each}
-  </nav>
-  <div class="h-16" />
-{/if}
-
-<style uno:preflights uno:safelist global>
-  :root {
-    @apply bg-base-200;
-  }
-  [data-theme='light'] .light-text-neutral-content {
-    @apply text-neutral-content;
-  }
-  .table th:first-child {
-    @apply static;
-  }
-</style>
+<style uno:preflights uno:safelist global></style>
