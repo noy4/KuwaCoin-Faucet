@@ -101,7 +101,7 @@
         class="input input-bordered w-full max-w-xs"
       />
     </div>
-    <p class="text-error">{requestTokensErrorMessage}</p>
+    <p class="text-error pt-4">{requestTokensErrorMessage}</p>
     <div class="card-actions justify-end mt-4">
       <button
         class="btn btn-primary normal-case"

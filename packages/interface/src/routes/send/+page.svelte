@@ -1,27 +1,88 @@
 <script lang="ts">
-  import { Card } from '$components'
-  import { FAUCET_ADDRESS, kuwaCoin } from '$lib/contracts'
-  import { parseEther } from 'ethers/lib/utils'
+  import { Card, Jazzicon } from '$components'
+  import { FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
+  import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
+  import { shortenAddress } from '$lib/utils'
+  import { BigNumber } from 'ethers'
+  import { formatEther, parseEther } from 'ethers/lib/utils'
 
+  let transfers: TransferEvent[] = []
   let amount = ''
   let toAddress = FAUCET_ADDRESS
   let isSending = false
   let errorMessage = ''
 
+  async function getTransfers() {
+    if (!$wallet || !$kuwaCoin) return
+    transfers = await $kuwaCoin.queryFilter(
+      $kuwaCoin.filters.Transfer($wallet.address, FAUCET_ADDRESS)
+    )
+  }
+
   async function send() {
-    if (!$kuwaCoin) return
+    if (!$wallet || !$kuwaCoin) return
     errorMessage = ''
     isSending = true
     try {
       await $kuwaCoin.transfer(toAddress, parseEther(amount))
     } catch (error) {
       errorMessage = 'Something went wrong'
+      console.error(error)
     }
     isSending = false
   }
+
+  $: if ($kuwaCoin) {
+    $kuwaCoin.on('Transfer', getTransfers)
+    getTransfers()
+  }
+
+  $: if (!$wallet) transfers = []
+
+  $: totalTransferedAmount = transfers.reduce(
+    (prev, current) => prev.add(current.args.value),
+    BigNumber.from(0)
+  )
 </script>
 
+<input type="checkbox" id="certificate" class="modal-toggle" />
+<label for="certificate" class="modal cursor-pointer">
+  <label class="modal-box p-0 max-w-md" for="">
+    <div class="flex flex-col gap-2 items-center m-4 p-2 border border-dashed">
+      <Jazzicon address={$wallet?.address} size={100} />
+      <p class="text-2xl">CERTIFICATE</p>
+      <div class="flex items-center gap-2 badge badge-ghost">
+        <Jazzicon address={$wallet?.address} />
+        {shortenAddress($wallet?.address)}
+      </div>
+      <p>You've sent</p>
+      <div>
+        <span class="text-5xl font-semibold">
+          {formatEther(totalTransferedAmount)}
+        </span>
+        <span class="font-bold">KWC</span>
+      </div>
+      <p>to Master Kuwa</p>
+      <p class="text-center font-serif italic mt-2">
+        Show this screen to Master Kuwa, and he might pay you dinner.
+      </p>
+      <div class="i-tabler-award text-7xl" />
+    </div>
+  </label>
+</label>
+
 <section class="flex flex-col items-center px-4">
+  {#if transfers.length}
+    <div class="i-tabler-award text-6xl mt-8" />
+    <p class="mt-2 text-center">You've sent some KWC to Master Kuwa.</p>
+    <label for="certificate" class="btn btn-xs btn-primary normal-case mt-1">
+      Show Cirtificate
+    </label>
+  {:else}
+    <div class="i-tabler-award-off text-6xl mt-8" />
+    <p class="mt-2 text-center">You haven't sent KWC to Master Kuwa yet.</p>
+  {/if}
+
   <Card class="mt-8 p-8">
     <div class="form-control w-full max-w-xs">
       <label for="amount" class="label">
@@ -29,7 +90,7 @@
       </label>
       <input
         id="amount"
-        placeholder="Input amount"
+        placeholder="0"
         bind:value={amount}
         class="input input-bordered w-full max-w-xs"
       />
@@ -48,7 +109,7 @@
         class="input input-bordered w-full max-w-xs"
       />
     </div>
-    <p class="text-error">{errorMessage}</p>
+    <p class="text-error pt-4">{errorMessage}</p>
     <div class="card-actions justify-end mt-4">
       <button
         class="btn btn-primary normal-case w-32"
@@ -60,7 +121,7 @@
     </div>
   </Card>
 
-  <div class="mt-8 max-w-sm px-2">
+  <div class="mt-8 max-w-sm px-2 text-sm">
     <p>
       ※送金の手数料として「イーサリアム」という別のコインが必要。これを省くことはどー足掻いても無理やった。すまんね、初心者のみんな。
     </p>

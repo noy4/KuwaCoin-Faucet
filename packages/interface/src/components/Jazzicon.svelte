@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { wallet } from '$lib/contracts'
   // @ts-ignore
   import jazzicon from '@metamask/jazzicon'
 
-  export let address = $wallet?.address || ''
+  export let address = ''
   export let size = 18
   let className = ''
   export { className as class }

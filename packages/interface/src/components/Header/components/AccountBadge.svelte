@@ -36,7 +36,7 @@
       class="btn btn-ghost btn-sm normal-case bg-base-100 rounded-xl gap-2"
     >
       <div>{shortenAddress($wallet.address)}</div>
-      <Jazzicon />
+      <Jazzicon address={$wallet?.address} />
     </label>
   </div>
 {:else}

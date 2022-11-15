@@ -5,7 +5,7 @@
  * @param end number of chars to keep at end
  * @returns ellipsed string
  */
-export const shortenAddress = (str: string | null, front = 5, end = 3) => {
+export const shortenAddress = (str = '', front = 5, end = 3) => {
   if (str) {
     return `${str.slice(0, front)}...${str.slice(str.length - end)}`
   }
