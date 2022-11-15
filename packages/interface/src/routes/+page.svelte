@@ -63,7 +63,7 @@
       <h1 class="mb-5 text-5xl font-bold">Kuwa Coin</h1>
       <p class="mb-5">欲望を叶える禁断の力</p>
       <div class="grid grid-cols-2 gap-2">
-        <Link to="/blog/guide">
+        <Link to="/guide">
           <button class="btn btn-outline light-text-neutral-content w-full">
             Guide
           </button>
@@ -82,7 +82,7 @@
     <div class="grid grid-flow-col gap-4">
       <Link to="/faucet" class="link link-hover">Get KuwaCoin</Link>
       <Link to="/data" class="link link-hover">Data</Link>
-      <Link to="/blog/developer" class="link link-hover">Developer</Link>
+      <Link to="/developer" class="link link-hover">Developer</Link>
     </div>
   </div>
   <div>
