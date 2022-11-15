@@ -1,11 +1,10 @@
 <script lang="ts">
-  import { Card, Jazzicon } from '$components'
+  import { Card, Certificate } from '$components'
   import { FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
   import { notifications } from '$lib/notifications'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
-  import { shortenAddress } from '$lib/utils'
   import { BigNumber } from 'ethers'
-  import { formatEther, parseEther } from 'ethers/lib/utils'
+  import { parseEther } from 'ethers/lib/utils'
 
   let transfers: TransferEvent[] = []
   let amount = ''
@@ -49,31 +48,7 @@
   )
 </script>
 
-<input type="checkbox" id="certificate" class="modal-toggle" />
-<label for="certificate" class="modal cursor-pointer">
-  <label class="modal-box p-0 max-w-md" for="">
-    <div class="flex flex-col gap-2 items-center m-4 p-2 border border-dashed">
-      <Jazzicon address={$wallet?.address} size={100} />
-      <p class="text-2xl">CERTIFICATE</p>
-      <div class="flex items-center gap-2 badge badge-ghost">
-        <Jazzicon address={$wallet?.address} />
-        {shortenAddress($wallet?.address)}
-      </div>
-      <p>You've sent</p>
-      <div>
-        <span class="text-5xl font-semibold">
-          {formatEther(totalTransferedAmount)}
-        </span>
-        <span class="font-bold">KWC</span>
-      </div>
-      <p>to Master Kuwa</p>
-      <p class="text-center font-serif italic mt-2">
-        Show this screen to Master Kuwa, and he might pay you dinner.
-      </p>
-      <div class="i-tabler-award text-7xl" />
-    </div>
-  </label>
-</label>
+<Certificate {totalTransferedAmount} />
 
 <section class="flex flex-col items-center px-4">
   {#if transfers.length}
@@ -90,9 +65,7 @@
   <Card class="mt-8 p-8">
     <form on:submit|preventDefault={send}>
       <div class="form-control w-full max-w-xs">
-        <label for="amount" class="label">
-          <span class="">Amount:</span>
-        </label>
+        <label for="amount" class="label">Amount:</label>
         <input
           id="amount"
           placeholder="0"
@@ -103,7 +76,7 @@
       </div>
       <div class="form-control w-full max-w-xs">
         <label for="to-address" class="label">
-          <span class="">To:</span>
+          To:
           {#if toAddress === FAUCET_ADDRESS}
             <span class="badge badge-sm">Master Kuwa</span>
           {/if}

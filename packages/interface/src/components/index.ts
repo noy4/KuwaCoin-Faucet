@@ -1,6 +1,7 @@
 export { default as Header } from './Header/Header.svelte'
 export { default as BottomNav } from './BottomNav.svelte'
 export { default as Card } from './Card.svelte'
+export { default as Certificate } from './Certificate.svelte'
 export { default as Jazzicon } from './Jazzicon.svelte'
 export { default as Link } from './Link.svelte'
 export { default as Toast } from './Toast.svelte'
