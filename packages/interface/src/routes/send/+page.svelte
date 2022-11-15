@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Card, Certificate } from '$components'
+  import { Card, Certificate, Input } from '$components'
   import { FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
   import { notifications } from '$lib/notifications'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
@@ -64,30 +64,25 @@
 
   <Card class="mt-8 p-8">
     <form on:submit|preventDefault={send}>
-      <div class="form-control w-full max-w-xs">
-        <label for="amount" class="label">Amount:</label>
-        <input
-          id="amount"
-          placeholder="0"
-          required
-          bind:value={amount}
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
-      <div class="form-control w-full max-w-xs">
-        <label for="to-address" class="label">
-          To:
-          {#if toAddress === FAUCET_ADDRESS}
-            <span class="badge badge-sm">Master Kuwa</span>
-          {/if}
-        </label>
-        <input
-          id="to-address"
-          placeholder="Input address"
-          bind:value={toAddress}
-          class="input input-bordered w-full max-w-xs"
-        />
-      </div>
+      <Input
+        id="amount"
+        label="Amount:"
+        placeholder="0"
+        required
+        bind:value={amount}
+      />
+      <Input
+        id="to-address"
+        placeholder="Input address"
+        required
+        bind:value={toAddress}
+      >
+        To:
+        {#if toAddress === FAUCET_ADDRESS}
+          <span class="badge badge-sm">Master Kuwa</span>
+        {/if}
+      </Input>
+
       <p class="text-error pt-4">{errorMessage}</p>
       <div class="card-actions justify-end mt-4">
         <button
