@@ -12,17 +12,17 @@
   let requestTokensErrorMessage = ''
 
   async function requestKuwaCoin() {
-    if (!$wallet) return
     isRequesting = true
     requestTokensErrorMessage = ''
 
     try {
-      const tx = await faucet.requestTokens($wallet.address)
+      const tx = await faucet.requestTokens(toAddress)
       await tx.wait()
       notifications.success('KuwaCoin を獲得しました')
     } catch (error: any) {
-      console.error(error.error.reason)
-      notifications.error(error.error.reason)
+      const _error = error.error?.reason || error
+      console.error(_error)
+      notifications.error(_error)
       requestTokensErrorMessage = 'Something went wrong'
     } finally {
       isRequesting = false

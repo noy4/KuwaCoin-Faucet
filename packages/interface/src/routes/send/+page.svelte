@@ -20,17 +20,21 @@
   }
 
   async function send() {
-    if (!$wallet || !$kuwaCoin) return
     errorMessage = ''
+    if (!$wallet || !$kuwaCoin) {
+      errorMessage = 'Connect wallet first'
+      return
+    }
     isSending = true
     try {
       const tx = await $kuwaCoin.transfer(toAddress, parseEther(amount))
       await tx.wait()
       notifications.success('送金が完了しました')
-    } catch (error) {
+    } catch (error: any) {
       errorMessage = 'Something went wrong'
-      console.error(error)
-      notifications.error(JSON.stringify(error))
+      const _error = error.error?.reason || error.error?.data?.message || error
+      console.error(JSON.stringify(error, null, 2))
+      notifications.error(_error)
     }
     isSending = false
   }
@@ -83,7 +87,9 @@
         {/if}
       </Input>
 
-      <p class="text-error pt-4">{errorMessage}</p>
+      {#if errorMessage}
+        <p class="text-error pt-4">{errorMessage}</p>
+      {/if}
       <div class="card-actions justify-end mt-4">
         <button
           type="submit"

@@ -4,10 +4,10 @@
   import { fly } from 'svelte/transition'
 </script>
 
-<div class="fixed top-0 right-0 mt-16 p-2 z-10 flex flex-col items-end">
+<div class="fixed top-0 right-0 mt-16 z-10 flex flex-col items-end">
   {#each $notifications as { id, status, message } (id)}
     <div
-      class="p-4 bg-{status} shadow-lg mb-2 rounded-xl"
+      class="m-2 p-4 bg-{status} shadow-lg mb-2 rounded-xl"
       animate:flip={{ duration: 500 }}
       in:fly={{ x: 30 }}
       out:fly={{ x: 30 }}
@@ -18,7 +18,9 @@
           class:i-tabler-circle-check={status === 'success'}
           class:i-tabler-alert-circle={status === 'error'}
         />
-        <div class="w-full break-all">{message}</div>
+        <div class="w-full break-words">
+          {message}
+        </div>
       </div>
     </div>
   {/each}
