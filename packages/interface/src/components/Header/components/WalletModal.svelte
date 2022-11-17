@@ -4,7 +4,7 @@
   export let disconnect: () => void
 </script>
 
-<input type="checkbox" checked id="wallet-modal" class="modal-toggle" />
+<input type="checkbox" id="wallet-modal" class="modal-toggle" />
 <label for="wallet-modal" class="modal cursor-pointer">
   <label class="modal-box card" for="">
     <h2 class="font-bold text-2xl">Your wallet</h2>
