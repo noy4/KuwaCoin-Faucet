@@ -21,7 +21,7 @@ const config: UserConfig = {
         ),
         ...[...Array(10)].map((_, i) => `mt-${i}`),
         ...[...Array(10)].map((_, i) => `p-${i}`),
-        ...['coin', 'send', 'book', 'circle-check', 'alert-circle'].map(
+        ...['coin', 'send', 'book', 'circle-check', 'alert-circle', 'copy'].map(
           (v) => `i-tabler-${v}`
         ),
       ],

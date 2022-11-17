@@ -1,21 +1,20 @@
 <script lang="ts">
+  import { Copiable } from '$components'
   import { wallet } from '$lib/contracts'
   export let disconnect: () => void
 </script>
 
-<input type="checkbox" id="wallet-modal" class="modal-toggle" />
+<input type="checkbox" checked id="wallet-modal" class="modal-toggle" />
 <label for="wallet-modal" class="modal cursor-pointer">
   <label class="modal-box card" for="">
-    <h2 class="font-bold text-2xl pb-2">Your wallet</h2>
+    <h2 class="font-bold text-2xl">Your wallet</h2>
+
     {#if $wallet}
-      <h3 class="mt-2">Address:</h3>
-      <div class="overflow-x-scroll">
-        <div>{$wallet.address}</div>
-      </div>
-      <h3 class="mt-2">Private key:</h3>
-      <div class="overflow-x-scroll">
-        <div>{$wallet.privateKey}</div>
-      </div>
+      <h3 class="mt-6 font-semibold">Address:</h3>
+      <Copiable text={$wallet.address} />
+      <h3 class="mt-4 font-semibold">Private key:</h3>
+      <Copiable text={$wallet.privateKey} />
+
       <div class="flex justify-end">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <label

@@ -4,7 +4,7 @@
   import { fly } from 'svelte/transition'
 </script>
 
-<div class="fixed top-0 right-0 mt-16 z-10 flex flex-col items-end">
+<div class="fixed top-0 right-0 mt-16 z-10 max-w-sm flex flex-col items-end">
   {#each $notifications as { id, status, message } (id)}
     <div
       class="m-2 p-4 bg-{status} shadow-lg mb-2 rounded-xl"
