@@ -9,7 +9,7 @@
   $: balance =
     $kuwaCoin && $wallet ? $kuwaCoin.balanceOf($wallet.address) : undefined
 
-  const updateBalance = (...args) => {
+  const onTransfer = (...args: any[]) => {
     if (!$wallet || !$kuwaCoin) return
     console.log('Transfer:', {
       from: args[0].slice(2, 5),
@@ -20,7 +20,7 @@
     balance = $kuwaCoin.balanceOf($wallet.address)
   }
   $: if ($kuwaCoin) {
-    $kuwaCoin.on('Transfer', updateBalance)
+    $kuwaCoin.on('Transfer', onTransfer)
   }
 </script>
 
@@ -42,7 +42,11 @@
 {:else}
   <div class="dropdown dropdown-hover">
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-    <div tabindex="0" class="btn btn-outline btn-sm btn-primary normal-case">
+    <div
+      tabindex="0"
+      class="btn btn-outline btn-sm btn-primary normal-case gap-1"
+    >
+      <span class="i-tabler-wallet text-xl" />
       Create / Import Wallet
     </div>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->

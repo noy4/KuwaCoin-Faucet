@@ -1,5 +1,6 @@
 <script lang="ts">
   export let text: string
+  export let label: string | undefined
 
   let wasCopied = false
 
@@ -13,8 +14,8 @@
 </script>
 
 <div>
-  <span class="break-all">{text}</span>
-  <div class="tooltip h-5" data-tip={wasCopied ? 'Copied!' : 'Copy'}>
+  <span class="break-all">{label || text}</span>
+  <div class="tooltip" data-tip={wasCopied ? 'Copied!' : 'Copy'}>
     <button
       class="i-tabler-{wasCopied ? 'circle-check' : 'copy'} text-xl"
       on:click={copy}

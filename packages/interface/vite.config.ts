@@ -14,9 +14,18 @@ const config: UserConfig = {
     UnoCSS({
       mode: 'svelte-scoped',
       transformers: [transformerDirectives()],
-      presets: [presetUno(), presetDaisy(), presetTypography(), presetIcons()],
+      presets: [
+        presetUno(),
+        presetDaisy(),
+        presetTypography(),
+        presetIcons({
+          extraProperties: {
+            display: 'inline-block',
+          },
+        }),
+      ],
       safelist: [
-        ...'bg-base-300 hidden bg-transparent bg-base-100 absolute shadow-none bg-success bg-error'.split(
+        ...'bg-base-300 hidden bg-transparent bg-base-100 absolute shadow-none bg-success bg-error inline-block'.split(
           ' '
         ),
         ...[...Array(10)].map((_, i) => `mt-${i}`),

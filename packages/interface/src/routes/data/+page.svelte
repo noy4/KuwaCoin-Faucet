@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Card, Jazzicon } from '$components'
+  import { Card, Copiable, Jazzicon } from '$components'
   import { kuwaCoin, KUWA_COIN_ADDRESS, wallet } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
@@ -28,7 +28,12 @@
     <table>
       <tr>
         <td>Address</td>
-        <td class="text-right">{shortenAddress(KUWA_COIN_ADDRESS)}</td>
+        <td class="text-right">
+          <Copiable
+            text={KUWA_COIN_ADDRESS}
+            label={shortenAddress(KUWA_COIN_ADDRESS)}
+          />
+        </td>
       </tr>
       <tr>
         <td>Total Supply</td>
