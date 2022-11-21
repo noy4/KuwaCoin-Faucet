@@ -1,9 +1,9 @@
 import i18next from 'i18next'
 import { createI18nStore } from 'svelte-i18next'
 import { derived } from 'svelte/store'
+import LanguageDetector from 'i18next-browser-languagedetector'
 
-i18next.init({
-  lng: 'en',
+i18next.use(LanguageDetector).init({
   resources: {
     ja: {
       translation: {
