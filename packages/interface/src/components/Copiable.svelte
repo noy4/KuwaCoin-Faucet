@@ -1,6 +1,6 @@
 <script lang="ts">
   export let text: string
-  export let label: string | undefined
+  export let label = ''
 
   let wasCopied = false
 

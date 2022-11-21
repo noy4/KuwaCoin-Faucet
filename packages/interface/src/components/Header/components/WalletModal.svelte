@@ -1,7 +1,11 @@
 <script lang="ts">
   import { Copiable } from '$components'
   import { wallet } from '$lib/contracts'
-  export let disconnect: () => void
+
+  function disconnect() {
+    wallet.set(undefined)
+    localStorage.removeItem('privateKey')
+  }
 </script>
 
 <input type="checkbox" id="wallet-modal" class="modal-toggle" />

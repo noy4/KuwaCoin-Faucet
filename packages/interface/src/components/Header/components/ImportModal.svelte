@@ -1,8 +1,22 @@
 <script lang="ts">
-  export let importModal
+  import { provider, wallet } from '$lib/contracts'
+  import { ethers } from 'ethers'
+
   export let privateKey = ''
-  export let importWallet: () => void
   export let importErrorMessage = ''
+  let importModal: HTMLInputElement
+
+  function importWallet() {
+    importErrorMessage = ''
+    try {
+      const _wallet = new ethers.Wallet(privateKey, provider)
+      wallet.set(_wallet)
+      localStorage.privateKey = _wallet.privateKey
+      importModal.checked = false
+    } catch (e) {
+      importErrorMessage = 'Invalid private key'
+    }
+  }
 </script>
 
 <input

@@ -5,34 +5,17 @@
   import { ethers } from 'ethers'
   import { onMount } from 'svelte'
   import Link from '../Link.svelte'
-  import { AccountBadge, ImportModal, WalletModal } from './components'
-  import Dropdown from './components/Dropdown.svelte'
-
-  let privateKey = ''
-  let importErrorMessage = ''
-  let importModal: HTMLInputElement
+  import {
+    AccountBadge,
+    Dropdown,
+    ImportModal,
+    WalletModal,
+  } from './components'
 
   async function createWallet() {
     const _wallet = ethers.Wallet.createRandom().connect(provider)
     localStorage.privateKey = _wallet.privateKey
     wallet.set(_wallet)
-  }
-
-  function disconnect() {
-    wallet.set(undefined)
-    localStorage.removeItem('privateKey')
-  }
-
-  function importWallet() {
-    importErrorMessage = ''
-    try {
-      const _wallet = new ethers.Wallet(privateKey, provider)
-      wallet.set(_wallet)
-      localStorage.privateKey = _wallet.privateKey
-      importModal.checked = false
-    } catch (e) {
-      importErrorMessage = 'Invalid private key'
-    }
   }
 
   async function connectOnMount() {
@@ -48,17 +31,11 @@
   })
 </script>
 
-<WalletModal {disconnect} />
-
-<ImportModal
-  bind:importModal
-  bind:privateKey
-  {importWallet}
-  {importErrorMessage}
-/>
+<WalletModal />
+<ImportModal />
 
 <header
-  class="navbar gap-2 {isHome ? 'bg-transparent' : 'bg-base-100'}"
+  class="navbar gap-2 {isHome ? 'bØg-transparent' : 'bg-base-100'}"
   class:absolute={isHome}
   class:shadow={!isHome}
 >
