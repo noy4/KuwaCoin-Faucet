@@ -58,9 +58,9 @@
 <section class="flex flex-col items-center px-4">
   {#if transfers.length}
     <div class="i-tabler-award text-6xl mt-8" />
-    <p class="mt-2 text-center">You've sent some KWC to Master Kuwa.</p>
+    <p class="mt-2 text-center">{$t("You've sent some KWC to Master Kuwa.")}</p>
     <label for="certificate" class="btn btn-xs btn-primary normal-case mt-1">
-      Show Cirtificate
+      {$t('Show Cirtificate')}
     </label>
   {:else}
     <div class="i-tabler-award-off text-6xl mt-8" />

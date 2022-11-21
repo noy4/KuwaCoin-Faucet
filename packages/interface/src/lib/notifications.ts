@@ -23,7 +23,7 @@ function createNotificationStore() {
       if ($_notifications.length > 0) {
         const timer = setTimeout(() => {
           _notifications.update((state) => state.slice(1))
-        }, 2000)
+        }, 3000)
         return () => clearTimeout(timer)
       }
     }

@@ -40,7 +40,10 @@ const resources = {
 
       // Send
       "You haven't sent KWC to Master Kuwa yet.":
-        'まだマスター・クワにKuwaCoinを送っていません。',
+        'まだ Master Kuwa に KuwaCoin を送っていません。',
+      "You've sent some KWC to Master Kuwa.":
+        'あなたは Master Kuwa に KWC を送りました。',
+      'Show Cirtificate': '証書を表示する',
       Send: '送る',
     },
   },
