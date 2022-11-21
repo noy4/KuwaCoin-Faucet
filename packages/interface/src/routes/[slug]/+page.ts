@@ -29,6 +29,7 @@ export const load: PageLoad = async ({ params }) => {
     en: enFile[1],
     ...otherLangFiles,
   }
+
   const contents = await Object.keys(files).reduce<
     Promise<Record<string, string>>
   >(async (prev, key) => {

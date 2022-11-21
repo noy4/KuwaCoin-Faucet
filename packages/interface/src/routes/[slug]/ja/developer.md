@@ -11,7 +11,7 @@
 - SvelteKit
   - UnoCSS
     - Daisy UI
-    - Icons
+    - Pure CSS Icons
 
 ## やったこと
 
@@ -57,6 +57,6 @@ React でやってたけど Svelte が気になってたので使ってみるこ
 
 - yarn → npm に変更
 - UnoCSS
-  - Icons
+  - Pure CSS Icons
 
 

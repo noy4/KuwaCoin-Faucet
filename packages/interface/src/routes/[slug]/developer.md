@@ -1,23 +1,23 @@
-# Kuwa Coin 開発
+# Development of Kuwa Coin
 
-## 目的
+## Purpose
 
-ブロックチェーン開発の流れをアウトプットして理解
+To understand the flow of Blockchain Development by outputting it
 
-## 構成
+## Structure
 
 - npm workspaces
 - Hardhat
 - SvelteKit
   - UnoCSS
     - Daisy UI
-    - Icons
+    - Pure CSS Icons
 
-## やったこと
+## What I did
 
-- scafold-eth 写経、構成理解
-- yarn v3 試す
-- yarn workspaces 試す
+- Copy scafold-eth, understand its structure
+- Try yarn v3
+- Try yarn workspaces
 
 <!--  -->
 
@@ -31,7 +31,7 @@
 - Kuwa Coin (Contract)
 - Vendor (Contract)
 
-React でやってたけど Svelte が気になってたので使ってみることにした。
+I was working with React but was curious about Svelte, so I decided to try it.
 
 - Svelte
 - Daisy UI
@@ -40,23 +40,23 @@ React でやってたけど Svelte が気になってたので使ってみるこ
 
 - TypeChain
 
-- MetaMask とかでウォレットを接続して使うように作ってたけど MetaMask インストールさせるのアレなのでウォレット作成機能を実装
+- I had made it so that I could connect a wallet with MetaMask or something, but I didn't want to make people install MetaMask, so I implemented a wallet creation function.
 
-## 旅に出る
+## Going on a trip
 
-沖縄、福岡、香川、愛媛、タイ...  
-3ヶ月の時が過ぎた...
+Okinawa, Fukuoka, Kagawa, Ehime, Thailand...  
+3 months passed...
 
-## 復活
+## Revival
 
-色々忘れてもーたのと SvelteKit で Breaking Change があったっぽいのでもっぺん作り直すことにした。
+I forgot a lot and there seemed to be some breaking changes in SvelteKit, so I decided to rebuild it again.
 
-- Kuwa Coin を売り買いできる Vendor コントラクトを実装していたが、ユーザーに前もってテスト ETH 取得してもらうのアレだったので、Kuwa Coin をばら撒く Faucet コントラクトに変更
+- I had implemented a Vendor Contract that allows users to buy and sell Kuwa Coins, but it was too much to ask users to get test ETH in advance, so I changed it to a Faucet Contract to disperse Kuwa Coins.
 
 <!--  -->
 
-- yarn → npm に変更
+- Migrate yarn → npm
 - UnoCSS
-  - Icons
+  - Pure CSS Icons
 
 
