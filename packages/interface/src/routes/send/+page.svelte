@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Card, Certificate, Input } from '$components'
   import { FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
+  import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { BigNumber } from 'ethers'
@@ -63,7 +64,9 @@
     </label>
   {:else}
     <div class="i-tabler-award-off text-6xl mt-8" />
-    <p class="mt-2 text-center">You haven't sent KWC to Master Kuwa yet.</p>
+    <p class="mt-2 text-center">
+      {$t("You haven't sent KWC to Master Kuwa yet.")}
+    </p>
   {/if}
 
   <Card class="mt-8 p-8">
