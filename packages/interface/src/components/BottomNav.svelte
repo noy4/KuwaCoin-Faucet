@@ -4,7 +4,7 @@
   import { Link } from '$components'
 
   const bottomNavItems = [
-    { icon: 'coin', label: 'Get', to: '/faucet' },
+    { icon: 'coin', label: 'Get', to: '/get' },
     { icon: 'send', label: 'Send', to: '/send' },
     { icon: 'book', label: 'Guide', to: '/guide' },
   ]

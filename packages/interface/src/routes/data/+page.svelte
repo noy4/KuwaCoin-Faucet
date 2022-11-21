@@ -12,8 +12,11 @@
   async function getTransfers() {
     if (!$kuwaCoin) return
     isTransfersLoading = true
-    transfers = await $kuwaCoin.queryFilter($kuwaCoin.filters.Transfer())
-    isTransfersLoading = false
+    try {
+      transfers = await $kuwaCoin.queryFilter($kuwaCoin.filters.Transfer())
+    } finally {
+      isTransfersLoading = false
+    }
   }
 
   $: if ($kuwaCoin) {

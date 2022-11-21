@@ -99,7 +99,7 @@
           class="btn btn-primary bg-primary normal-case w-32"
           class:loading={isSending}
         >
-          Send
+          {$t('Send')}
         </button>
       </div>
     </form>

@@ -35,7 +35,7 @@
       <p class="mb-5">
         {$t('Forbidden power to fulfill your desires')}
       </p>
-      <Link to="/faucet">
+      <Link to="/get">
         <button class="btn btn-primary">Get it now</button>
       </Link>
     </div>
@@ -74,7 +74,7 @@
             Guide
           </button>
         </Link>
-        <Link to="/faucet">
+        <Link to="/get">
           <button class="btn btn-primary">Get it now</button>
         </Link>
       </div>
@@ -86,7 +86,7 @@
   <div>
     <span class="text-2xl font-bold">桑</span>
     <div class="grid grid-flow-col gap-4">
-      <Link to="/faucet" class="link link-hover">Get KuwaCoin</Link>
+      <Link to="/get" class="link link-hover">Get KuwaCoin</Link>
       <Link to="/data" class="link link-hover">Data</Link>
       <Link to="/developer" class="link link-hover">Developer</Link>
     </div>

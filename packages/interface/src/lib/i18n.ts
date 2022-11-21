@@ -18,7 +18,7 @@ const resources = {
       'Input your private key': '秘密鍵を入力',
 
       Data: 'データ',
-      Developer: '開発者',
+      Developer: '開発者メモ',
       Language: '言語',
 
       // Home
@@ -41,6 +41,7 @@ const resources = {
       // Send
       "You haven't sent KWC to Master Kuwa yet.":
         'まだマスター・クワにKuwaCoinを送っていません。',
+      Send: '送る',
     },
   },
 } as const
