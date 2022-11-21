@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Copiable } from '$components'
   import { wallet } from '$lib/contracts'
+  import { t } from '$lib/i18n'
 
   function disconnect() {
     wallet.set(undefined)
@@ -11,12 +12,12 @@
 <input type="checkbox" id="wallet-modal" class="modal-toggle" />
 <label for="wallet-modal" class="modal cursor-pointer">
   <label class="modal-box card" for="">
-    <h2 class="font-bold text-2xl">Your wallet</h2>
+    <h2 class="font-bold text-2xl">{$t('Your wallet')}</h2>
 
     {#if $wallet}
-      <h3 class="mt-6 font-semibold">Address:</h3>
+      <h3 class="mt-6 font-semibold">{$t('Address')}:</h3>
       <Copiable text={$wallet.address} />
-      <h3 class="mt-4 font-semibold">Private key:</h3>
+      <h3 class="mt-4 font-semibold">{$t('Private key')}:</h3>
       <Copiable text={$wallet.privateKey} />
 
       <div class="flex justify-end">
@@ -26,7 +27,7 @@
           class="btn btn-primary mt-4 normal-case w-32"
           on:click={disconnect}
         >
-          Logout
+          {$t('Logout')}
         </label>
       </div>
     {/if}

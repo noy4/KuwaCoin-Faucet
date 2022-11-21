@@ -2,7 +2,7 @@
   import { base } from '$app/paths'
   import { page } from '$app/stores'
   import { Link } from '$components'
-  import { i18n, languages } from '$lib/i18n'
+  import { i18n, languages, t } from '$lib/i18n'
   import { theme } from '$lib/theme'
 
   type MenuType = 'top' | 'lang'
@@ -34,8 +34,8 @@
     class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
   >
     {#if menuType === 'top'}
-      <li><Link to="/data">Data</Link></li>
-      <li><Link to="/developer">Developer</Link></li>
+      <li><Link to="/data">{$t('Data')}</Link></li>
+      <li><Link to="/developer">{$t('Developer')}</Link></li>
       <li>
         <button
           on:click={() => {
@@ -43,7 +43,7 @@
           }}
         >
           <div class="i-tabler-world text-xl" />
-          <div>Language</div>
+          <div>{$t('Language')}</div>
           <span class="i-tabler-chevron-right text-xl ml-auto" />
         </button>
       </li>
@@ -65,7 +65,7 @@
             class="i-tabler-chevron-left w-6 h-6"
             on:click={() => switchMenu('top')}
           />
-          Language
+          {$t('Language')}
           <span class="w-6 h-6" />
         </div>
       </div>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Jazzicon } from '$components'
   import { kuwaCoin, wallet } from '$lib/contracts'
+  import { t } from '$lib/i18n'
   import { shortenAddress } from '$lib/utils'
   import { formatEther } from 'ethers/lib/utils'
 
@@ -47,18 +48,22 @@
       class="btn btn-outline btn-sm btn-primary normal-case gap-1"
     >
       <span class="i-tabler-wallet text-xl" />
-      Create / Import Wallet
+      {$t('Create / Import Wallet')}
     </div>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <ul
       tabindex="0"
-      class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+      class="dropdown-content menu p-2 shadow bg-base-100 rounded-box min-w-52"
     >
       <li>
-        <button on:click={createWallet}>Create new wallet</button>
+        <button on:click={createWallet}>
+          {$t('Create new wallet')}
+        </button>
       </li>
       <li>
-        <label for="import-modal">Import wallet</label>
+        <label for="import-modal">
+          {$t('Import wallet')}
+        </label>
       </li>
     </ul>
   </div>

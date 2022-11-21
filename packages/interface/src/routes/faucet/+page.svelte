@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Card } from '$components'
   import { faucet, kuwaCoin, wallet } from '$lib/contracts'
+  import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
   import { formatEther } from 'ethers/lib/utils'
@@ -79,23 +80,25 @@
   <Card class="mt-8 p-8">
     <div class="form-control w-full max-w-xs">
       <label for="to-address" class="label">
-        <span class="">Your wallet address:</span>
+        <span class="">{$t('Your wallet address:')}</span>
       </label>
       <input
         id="to-address"
-        placeholder="Input your wallet address"
+        placeholder={$t('Input your wallet address')}
         bind:value={toAddress}
         class="input input-bordered w-full max-w-xs"
       />
     </div>
-    <p class="text-error pt-4">{requestTokensErrorMessage}</p>
+    {#if requestTokensErrorMessage}
+      <p class="text-error pt-4">{requestTokensErrorMessage}</p>
+    {/if}
     <div class="card-actions justify-end mt-4">
       <button
         class="btn btn-primary normal-case"
         class:loading={isRequesting}
         on:click={requestKuwaCoin}
       >
-        Give me KWC
+        {$t('Give me KWC')}
       </button>
     </div>
   </Card>

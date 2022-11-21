@@ -1,5 +1,6 @@
 <script lang="ts">
   import { provider, wallet } from '$lib/contracts'
+  import { t } from '$lib/i18n'
   import { ethers } from 'ethers'
 
   export let privateKey = ''
@@ -29,20 +30,22 @@
   <label class="modal-box card max-w-md" for="">
     <div class="form-control w-full max-w-xs mt-2">
       <label for="private-key" class="label">
-        <span class="">Private key:</span>
+        <span class="">{$t('Private key')}:</span>
       </label>
       <input
         id="private-key"
-        placeholder="Input your private key"
+        placeholder={$t('Input your private key')}
         bind:value={privateKey}
         class="input input-bordered w-full max-w-xs"
       />
     </div>
+    {#if importErrorMessage}
+      <p class="text-error mt-2">{importErrorMessage}</p>
+    {/if}
     <div class="flex justify-end">
       <button class="btn btn-primary mt-4 normal-case" on:click={importWallet}>
-        Import wallet
+        {$t('Import wallet')}
       </button>
     </div>
-    <p class="text-error mt-2">{importErrorMessage}</p>
   </label>
 </label>
