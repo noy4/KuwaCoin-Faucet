@@ -2,17 +2,12 @@
   import { base } from '$app/paths'
   import { page } from '$app/stores'
   import { Link } from '$components'
-  import { i18n } from '$lib/i18n'
+  import { i18n, languages } from '$lib/i18n'
   import { theme } from '$lib/theme'
 
   type MenuType = 'top' | 'lang'
   let menuType: MenuType = 'top'
   let menuElement: HTMLElement
-
-  const languages = [
-    { key: 'en', label: 'English' },
-    { key: 'ja', label: '日本語' },
-  ]
 
   function switchMenu(type: MenuType) {
     menuType = type

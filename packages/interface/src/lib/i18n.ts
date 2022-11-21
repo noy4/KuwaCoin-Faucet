@@ -29,3 +29,8 @@ i18next.init({
 
 export const i18n = createI18nStore(i18next)
 export const t = derived(i18n, ($i18n) => $i18n.t)
+
+export const languages = [
+  { key: 'en', label: 'English' },
+  { key: 'ja', label: '日本語' },
+]

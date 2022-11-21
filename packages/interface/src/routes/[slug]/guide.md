@@ -1,14 +1,13 @@
-# Kuwa Coin ガイド
+# Kuwa Coin Guide
 
-### 1. 👛 財布を作る
+### 1. 👛 Create wallet
 
-ネット上の財布（ウォレット）を作成する。
-画面右上のボタンをポチポチ。
+Create your wallet on the internet by clicking the button in the upper right corner of the screen.
 
-### 2. 💰 Kuwa Coin を受け取る
+### 2. 💰 Get Kuwa Coin
 
-Get 画面でボタンをポチ。あなたのウォレットに Kuwa Coin が送られる。嬉しくなる。
+Click the button on Get page. Kuwa Coin will be sent to your wallet. You will be happy.
 
-### 3. 🚀 Master Kuwa に送る
+### 3. 🚀 Sent it to Master Kuwa
 
-Send 画面でボタンをポチ。Master Kuwa に Kuwa Coin が送られる。Master Kuwa が会ったときにご飯を奢ってくれる。
+Click the button on Send page. Kuwa Coin will be sent to Master Kuwa. He will buy you dinner when you meet him.
