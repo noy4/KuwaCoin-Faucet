@@ -1,11 +1,11 @@
 {
   "../../node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-dd1832d1.js",
+    "file": "_app/immutable/start-b98ec6b0.js",
     "src": "../../node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
       "_index-0a6c6e8d.js",
-      "_singletons-ed5c6dc9.js",
+      "_singletons-32f8d5c4.js",
       "_control-ad5f0ffb.js",
       "_paths-69dfee94.js"
     ],
@@ -20,13 +20,13 @@
     ]
   },
   "src/routes/+layout.svelte": {
-    "file": "_app/immutable/components/pages/_layout.svelte-5b3df737.js",
+    "file": "_app/immutable/components/pages/_layout.svelte-4fac897b.js",
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
       "_index-0a6c6e8d.js",
       "_paths-69dfee94.js",
-      "_stores-690e1680.js",
+      "_stores-5d0d9563.js",
       "_Toast.svelte_svelte_type_style_lang-bdea3cab.js",
       "_Logo-0cbda4e8.js",
       "_i18n-1dbfe856.js",
@@ -39,12 +39,12 @@
     ]
   },
   "../../node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
-    "file": "_app/immutable/components/error.svelte-1493c612.js",
+    "file": "_app/immutable/components/error.svelte-87509626.js",
     "src": "../../node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
     "isEntry": true,
     "imports": [
       "_index-0a6c6e8d.js",
-      "_stores-690e1680.js"
+      "_stores-5d0d9563.js"
     ]
   },
   "src/routes/+page.svelte": {
@@ -140,8 +140,8 @@
       "__page-25dc0f26.js"
     ]
   },
-  "_singletons-ed5c6dc9.js": {
-    "file": "_app/immutable/chunks/singletons-ed5c6dc9.js",
+  "_singletons-32f8d5c4.js": {
+    "file": "_app/immutable/chunks/singletons-32f8d5c4.js",
     "imports": [
       "_index-0a6c6e8d.js",
       "_paths-69dfee94.js"
@@ -166,11 +166,11 @@
       "_app/immutable/assets/Toast-108eb6d4.css"
     ]
   },
-  "_stores-690e1680.js": {
-    "file": "_app/immutable/chunks/stores-690e1680.js",
+  "_stores-5d0d9563.js": {
+    "file": "_app/immutable/chunks/stores-5d0d9563.js",
     "imports": [
       "_index-0a6c6e8d.js",
-      "_singletons-ed5c6dc9.js"
+      "_singletons-32f8d5c4.js"
     ]
   },
   "_Logo-0cbda4e8.js": {
@@ -231,7 +231,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/0.js": {
-    "file": "_app/immutable/chunks/0-21d55c32.js",
+    "file": "_app/immutable/chunks/0-ab7c2bfd.js",
     "src": ".svelte-kit/generated/nodes/0.js",
     "isDynamicEntry": true,
     "imports": [
@@ -240,7 +240,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/1.js": {
-    "file": "_app/immutable/chunks/1-f0775af1.js",
+    "file": "_app/immutable/chunks/1-737f41b7.js",
     "src": ".svelte-kit/generated/nodes/1.js",
     "isDynamicEntry": true,
     "imports": [
@@ -308,14 +308,6 @@
     "src": "src/routes/[slug]/ja/guide.md?raw",
     "isDynamicEntry": true
   },
-  "src/routes/data/+page.css": {
-    "file": "_app/immutable/assets/_page-50db621c.css",
-    "src": "src/routes/data/+page.css"
-  },
-  "src/routes/get/+page.css": {
-    "file": "_app/immutable/assets/_page-c38ddede.css",
-    "src": "src/routes/get/+page.css"
-  },
   "Toast.css": {
     "file": "_app/immutable/assets/Toast-108eb6d4.css",
     "src": "Toast.css"
@@ -324,16 +316,24 @@
     "file": "_app/immutable/assets/_page-9882d8dd.css",
     "src": "src/routes/+page.css"
   },
-  "src/routes/send/+page.css": {
-    "file": "_app/immutable/assets/_page-813b5899.css",
-    "src": "src/routes/send/+page.css"
+  "src/routes/data/+page.css": {
+    "file": "_app/immutable/assets/_page-50db621c.css",
+    "src": "src/routes/data/+page.css"
   },
   "src/routes/[slug]/+page.css": {
     "file": "_app/immutable/assets/_page-491cb38e.css",
     "src": "src/routes/[slug]/+page.css"
   },
+  "src/routes/get/+page.css": {
+    "file": "_app/immutable/assets/_page-c38ddede.css",
+    "src": "src/routes/get/+page.css"
+  },
   "src/routes/+layout.css": {
     "file": "_app/immutable/assets/_layout-b9e95e55.css",
     "src": "src/routes/+layout.css"
+  },
+  "src/routes/send/+page.css": {
+    "file": "_app/immutable/assets/_page-813b5899.css",
+    "src": "src/routes/send/+page.css"
   }
 }
