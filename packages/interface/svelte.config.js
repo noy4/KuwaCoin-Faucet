@@ -1,5 +1,7 @@
-import adapter from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-static'
 import preprocess from 'svelte-preprocess'
+
+const isProd = process.env.NODE_ENV === 'production'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,6 +14,12 @@ const config = {
     alias: {
       $components: 'src/components',
       $lib: 'src/lib',
+    },
+    prerender: {
+      entries: ['*', '/guide', '/developer'],
+    },
+    paths: {
+      base: isProd ? '/KuwaCoin-Faucet' : '',
     },
   },
 }

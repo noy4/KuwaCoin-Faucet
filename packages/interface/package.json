@@ -13,6 +13,7 @@
   "devDependencies": {
     "@iconify-json/tabler": "^1.1.45",
     "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-static": "^1.0.0-next.48",
     "@sveltejs/kit": "next",
     "@types/marked": "^4.0.7",
     "prettier": "^2.7.1",
