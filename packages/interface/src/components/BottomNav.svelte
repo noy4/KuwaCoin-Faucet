@@ -17,7 +17,7 @@
     {#each bottomNavItems as item}
       <Link
         to={item.to}
-        class={item.to === `${base}${$page.url.pathname}` ? 'active' : ''}
+        class={`${base}${item.to}` === $page.url.pathname ? 'active' : ''}
       >
         <span class="i-tabler-{item.icon} text-xl" />
         <span class="btm-nav-label text-2.5">{item.label}</span>
