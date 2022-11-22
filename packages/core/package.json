@@ -4,6 +4,7 @@
     "compile": "hardhat compile",
     "chain": "hardhat node",
     "deploy": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
     "test": "hardhat test"
   },
   "devDependencies": {
