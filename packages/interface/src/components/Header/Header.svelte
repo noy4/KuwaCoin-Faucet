@@ -1,6 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths'
   import { page } from '$app/stores'
+  import { Logo } from '$components'
   import { provider, wallet } from '$lib/contracts'
   import { ethers } from 'ethers'
   import { onMount } from 'svelte'
@@ -44,7 +45,9 @@
       class="btn btn-ghost text-xl normal-case"
       class:light-text-neutral-content={isHome}
     >
-      <Link to="/">桑</Link>
+      <Link to="/">
+        <Logo />
+      </Link>
     </button>
   </div>
 

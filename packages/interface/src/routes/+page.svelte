@@ -1,5 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths'
+  import { Logo } from '$components'
   import Link from '$components/Link.svelte'
   import { t } from '$lib/i18n'
 
@@ -85,8 +86,8 @@
 
 <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
   <div>
-    <span class="text-2xl font-bold">桑</span>
-    <div class="grid grid-flow-col gap-4">
+    <Logo />
+    <div class="grid grid-flow-col gap-4 mt-2">
       <Link to="/get" class="link link-hover">Get KuwaCoin</Link>
       <Link to="/data" class="link link-hover">Data</Link>
       <Link to="/developer" class="link link-hover">Developer</Link>

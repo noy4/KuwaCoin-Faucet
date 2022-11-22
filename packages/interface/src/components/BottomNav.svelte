@@ -15,7 +15,10 @@
 {#if !isHome}
   <nav class="btm-nav border-t border-t-base-200 max-w-3xl mx-auto">
     {#each bottomNavItems as item}
-      <Link to={item.to} class={item.to === $page.url.pathname ? 'active' : ''}>
+      <Link
+        to={item.to}
+        class={item.to === `${base}${$page.url.pathname}` ? 'active' : ''}
+      >
         <span class="i-tabler-{item.icon} text-xl" />
         <span class="btm-nav-label text-2.5">{item.label}</span>
       </Link>
