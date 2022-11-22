@@ -35,6 +35,10 @@
   <Card class="p-8 mt-4">
     <table>
       <tr>
+        <td>Chain</td>
+        <td class="text-right">Sepolia</td>
+      </tr>
+      <tr>
         <td>Address</td>
         <td class="text-right whitespace-nowrap">
           <Hash
@@ -53,8 +57,15 @@
           {/await}
         </td>
       </tr>
+      <tr><td class="text-lg font-semibold pt-4">Master Kuwa</td></tr>
       <tr>
-        <td class="whitespace-nowrap">Master Kuwa's Balance</td>
+        <td>Address</td>
+        <td class="text-right whitespace-nowrap">
+          <Hash text={FAUCET_ADDRESS} label={shortenAddress(FAUCET_ADDRESS)} />
+        </td>
+      </tr>
+      <tr>
+        <td class="whitespace-nowrap">KWC Balance</td>
         <td class="text-right">
           {#await $kuwaCoin?.balanceOf(FAUCET_ADDRESS)}
             loading...
