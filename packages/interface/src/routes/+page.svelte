@@ -38,7 +38,7 @@
         {$t('Forbidden power to fulfill your desires')}
       </p>
       <Link to="/get">
-        <button class="btn btn-primary">Get it now</button>
+        <button class="btn btn-primary">{$t('Get it now')}</button>
       </Link>
     </div>
     <span
@@ -73,11 +73,11 @@
       <div class="grid grid-cols-2 gap-2">
         <Link to="/guide">
           <button class="btn btn-outline light-text-neutral-content w-full">
-            Guide
+            {$t('Guide')}
           </button>
         </Link>
         <Link to="/get">
-          <button class="btn btn-primary">Get it now</button>
+          <button class="btn btn-primary">{$t('Get it now')}</button>
         </Link>
       </div>
     </div>
@@ -88,9 +88,9 @@
   <div>
     <Logo />
     <div class="grid grid-flow-col gap-4 mt-2">
-      <Link to="/get" class="link link-hover">Get KuwaCoin</Link>
-      <Link to="/data" class="link link-hover">Data</Link>
-      <Link to="/developer" class="link link-hover">Developer</Link>
+      <Link to="/get" class="link link-hover">{$t('Get KuwaCoin')}</Link>
+      <Link to="/data" class="link link-hover">{$t('Data')}</Link>
+      <Link to="/developer" class="link link-hover">{$t('Developer')}</Link>
     </div>
   </div>
   <div>

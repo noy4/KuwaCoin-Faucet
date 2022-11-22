@@ -23,6 +23,7 @@ const resources = {
 
       // Home
       'Forbidden power to fulfill your desires': '欲望を叶える禁断の力',
+
       'The Nativity of the Load': '主の降誕',
       'Master Kuwa appeared in the devastated land. The people living there entertained Master Kuwa with love, despite their poverty. Master Kuwa was so impressed that he created the "Kuwa Coin," a token of his power, and gave it to the people as a token of his appreciation.':
         '荒廃した大地に Master Kuwa は現れた。その地に住まう人々は、貧しさも厭わず、愛を持って Master Kuwa をもてなした。Master Kuwa は感銘を受けた。Master Kuwa は礼として、自らの力を込めた「Kuwa Coin」を生み出し、人々に与えた。',
