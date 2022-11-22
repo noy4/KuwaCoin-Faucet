@@ -4,7 +4,7 @@
   import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
-  import { formatEther } from 'ethers/lib/utils'
+  import { formatEther } from '@ethersproject/units'
 
   let balance: BigNumber | undefined
   let isBalanceLoading = false

@@ -4,7 +4,7 @@
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
-  import { formatEther } from 'ethers/lib/utils'
+  import { formatEther } from '@ethersproject/units'
 
   let isTransfersLoading = false
   let transfers: TransferEvent[] = []

@@ -1,3 +1,5 @@
+import { ethers } from 'ethers'
+
 /**
  * Returns a string of form "abc...xyz"
  * @param str string to string

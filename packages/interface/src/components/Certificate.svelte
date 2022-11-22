@@ -3,7 +3,7 @@
   import { wallet } from '$lib/contracts'
   import { shortenAddress } from '$lib/utils'
   import type { BigNumber } from 'ethers'
-  import { formatEther } from 'ethers/lib/utils'
+  import { formatEther } from '@ethersproject/units'
 
   export let totalTransferedAmount: BigNumber
 </script>

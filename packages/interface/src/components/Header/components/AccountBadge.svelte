@@ -3,7 +3,7 @@
   import { kuwaCoin, wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
   import { shortenAddress } from '$lib/utils'
-  import { formatEther } from 'ethers/lib/utils'
+  import { formatEther } from '@ethersproject/units'
 
   export let createWallet: () => void
 
