@@ -1,6 +1,11 @@
 <script lang="ts">
-  import { Card, Copiable, Jazzicon } from '$components'
-  import { kuwaCoin, KUWA_COIN_ADDRESS, wallet } from '$lib/contracts'
+  import { Card, Hash, Jazzicon } from '$components'
+  import {
+    FAUCET_ADDRESS,
+    kuwaCoin,
+    KUWA_COIN_ADDRESS,
+    wallet,
+  } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
@@ -31,8 +36,8 @@
     <table>
       <tr>
         <td>Address</td>
-        <td class="text-right">
-          <Copiable
+        <td class="text-right whitespace-nowrap">
+          <Hash
             text={KUWA_COIN_ADDRESS}
             label={shortenAddress(KUWA_COIN_ADDRESS)}
           />
@@ -42,6 +47,16 @@
         <td>Total Supply</td>
         <td class="text-right">
           {#await $kuwaCoin?.totalSupply()}
+            loading...
+          {:then value}
+            {value ? (+formatEther(value)).toLocaleString() : '-'}
+          {/await}
+        </td>
+      </tr>
+      <tr>
+        <td class="whitespace-nowrap">Master Kuwa's Balance</td>
+        <td class="text-right">
+          {#await $kuwaCoin?.balanceOf(FAUCET_ADDRESS)}
             loading...
           {:then value}
             {value ? (+formatEther(value)).toLocaleString() : '-'}
@@ -80,7 +95,11 @@
               <td>
                 <div class="flex items-center gap-2">
                   <Jazzicon address={item.args.from} />
-                  {shortenAddress(item.args.from)}
+                  <Hash
+                    text={item.args.from}
+                    label={shortenAddress(item.args.from)}
+                    copiable={false}
+                  />
                   {#if item.args.from === $wallet?.address}
                     <div class="badge badge-sm badge-ghost">You</div>
                   {/if}
@@ -89,7 +108,11 @@
               <td>
                 <div class="flex items-center gap-2">
                   <Jazzicon address={item.args.to} />
-                  {shortenAddress(item.args.to)}
+                  <Hash
+                    text={item.args.to}
+                    label={shortenAddress(item.args.to)}
+                    copiable={false}
+                  />
                   {#if item.args.to === $wallet?.address}
                     <div class="badge badge-sm badge-ghost">You</div>
                   {/if}

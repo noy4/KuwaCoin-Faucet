@@ -14,6 +14,8 @@ const resources = {
       'Your wallet': 'あなたのウォレット',
       Address: 'アドレス',
       'Private key': '秘密鍵',
+      Show: '表示',
+      Hide: '非表示',
       Logout: 'ログアウト',
       'Input your private key': '秘密鍵を入力',
 

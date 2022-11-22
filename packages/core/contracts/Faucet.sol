@@ -27,4 +27,6 @@ contract Faucet {
     drippedList[_to] = true;
     token.transfer(_to, DRIP_AMOUNT * 10**token.decimals());
   }
+
+  receive() external payable {}
 }

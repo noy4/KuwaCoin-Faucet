@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { Copiable } from '$components'
+  import { Hash } from '$components'
   import { wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
+
+  let mask = true
 
   function disconnect() {
     wallet.set(undefined)
@@ -16,9 +18,12 @@
 
     {#if $wallet}
       <h3 class="mt-6 font-semibold">{$t('Address')}:</h3>
-      <Copiable text={$wallet.address} />
+      <Hash text={$wallet.address} />
       <h3 class="mt-4 font-semibold">{$t('Private key')}:</h3>
-      <Copiable text={$wallet.privateKey} />
+      <Hash text={$wallet.privateKey} {mask} link={false} />
+      <button class="badge badge-ghost" on:click={() => (mask = !mask)}>
+        {mask ? $t('Show') : $t('Hide')}
+      </button>
 
       <div class="flex justify-end">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
