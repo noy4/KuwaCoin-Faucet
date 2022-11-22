@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import Link from '$components/Link.svelte'
   import { t } from '$lib/i18n'
 
@@ -27,7 +28,7 @@
   ]
 </script>
 
-<div class="hero min-h-screen" style="background-image: url(coin.jpeg);">
+<div class="hero min-h-screen" style="background-image: url({base}/coin.jpeg);">
   <div class="hero-overlay bg-opacity-60" />
   <div class="hero-content text-center text-neutral-content">
     <div>
@@ -52,7 +53,7 @@
       class:md:flex-row-reverse={i % 2 === 1}
     >
       <div class="max-w-sm mx-auto">
-        <img src={story.image} alt={story.image} class="rounded-lg" />
+        <img src="{base}/{story.image}" alt={story.image} class="rounded-lg" />
       </div>
       <div class="flex-1 mb-8">
         <h3 class="text-xl font-bold mt-6 mb-4">{story.title}</h3>
@@ -62,7 +63,7 @@
   </div>
 {/each}
 
-<div class="hero min-h-[50vh]" style="background-image: url(coin.jpeg);">
+<div class="hero min-h-[50vh]" style="background-image: url({base}/coin.jpeg);">
   <div class="hero-overlay bg-opacity-60" />
   <div class="hero-content text-center text-neutral-content">
     <div class="max-w-md">
