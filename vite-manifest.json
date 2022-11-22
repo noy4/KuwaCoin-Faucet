@@ -1,11 +1,11 @@
 {
   "../../node_modules/@sveltejs/kit/src/runtime/client/start.js": {
-    "file": "_app/immutable/start-1a91b4d7.js",
+    "file": "_app/immutable/start-cef301fd.js",
     "src": "../../node_modules/@sveltejs/kit/src/runtime/client/start.js",
     "isEntry": true,
     "imports": [
       "_index-0a6c6e8d.js",
-      "_singletons-5a59aeb9.js",
+      "_singletons-62df1cee.js",
       "_control-ad5f0ffb.js",
       "_paths-69dfee94.js"
     ],
@@ -20,13 +20,13 @@
     ]
   },
   "src/routes/+layout.svelte": {
-    "file": "_app/immutable/components/pages/_layout.svelte-ef34d758.js",
+    "file": "_app/immutable/components/pages/_layout.svelte-69c33874.js",
     "src": "src/routes/+layout.svelte",
     "isEntry": true,
     "imports": [
       "_index-0a6c6e8d.js",
       "_paths-69dfee94.js",
-      "_stores-dc30c0f6.js",
+      "_stores-d42040d5.js",
       "_Toast.svelte_svelte_type_style_lang-bdea3cab.js",
       "_Logo-0cbda4e8.js",
       "_i18n-1dbfe856.js",
@@ -39,12 +39,12 @@
     ]
   },
   "../../node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
-    "file": "_app/immutable/components/error.svelte-47853576.js",
+    "file": "_app/immutable/components/error.svelte-c4456726.js",
     "src": "../../node_modules/@sveltejs/kit/src/runtime/components/error.svelte",
     "isEntry": true,
     "imports": [
       "_index-0a6c6e8d.js",
-      "_stores-dc30c0f6.js"
+      "_stores-d42040d5.js"
     ]
   },
   "src/routes/+page.svelte": {
@@ -140,8 +140,8 @@
       "__page-25dc0f26.js"
     ]
   },
-  "_singletons-5a59aeb9.js": {
-    "file": "_app/immutable/chunks/singletons-5a59aeb9.js",
+  "_singletons-62df1cee.js": {
+    "file": "_app/immutable/chunks/singletons-62df1cee.js",
     "imports": [
       "_index-0a6c6e8d.js",
       "_paths-69dfee94.js"
@@ -166,11 +166,11 @@
       "_app/immutable/assets/Toast-108eb6d4.css"
     ]
   },
-  "_stores-dc30c0f6.js": {
-    "file": "_app/immutable/chunks/stores-dc30c0f6.js",
+  "_stores-d42040d5.js": {
+    "file": "_app/immutable/chunks/stores-d42040d5.js",
     "imports": [
       "_index-0a6c6e8d.js",
-      "_singletons-5a59aeb9.js"
+      "_singletons-62df1cee.js"
     ]
   },
   "_Logo-0cbda4e8.js": {
@@ -231,7 +231,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/0.js": {
-    "file": "_app/immutable/chunks/0-886ab31e.js",
+    "file": "_app/immutable/chunks/0-06231165.js",
     "src": ".svelte-kit/generated/nodes/0.js",
     "isDynamicEntry": true,
     "imports": [
@@ -240,7 +240,7 @@
     ]
   },
   ".svelte-kit/generated/nodes/1.js": {
-    "file": "_app/immutable/chunks/1-d5d522f3.js",
+    "file": "_app/immutable/chunks/1-a9f1d739.js",
     "src": ".svelte-kit/generated/nodes/1.js",
     "isDynamicEntry": true,
     "imports": [
@@ -308,29 +308,29 @@
     "src": "src/routes/[slug]/ja/guide.md?raw",
     "isDynamicEntry": true
   },
-  "src/routes/data/+page.css": {
-    "file": "_app/immutable/assets/_page-50db621c.css",
-    "src": "src/routes/data/+page.css"
-  },
-  "src/routes/get/+page.css": {
-    "file": "_app/immutable/assets/_page-c38ddede.css",
-    "src": "src/routes/get/+page.css"
-  },
   "src/routes/+page.css": {
     "file": "_app/immutable/assets/_page-9882d8dd.css",
     "src": "src/routes/+page.css"
   },
-  "Toast.css": {
-    "file": "_app/immutable/assets/Toast-108eb6d4.css",
-    "src": "Toast.css"
+  "src/routes/[slug]/+page.css": {
+    "file": "_app/immutable/assets/_page-491cb38e.css",
+    "src": "src/routes/[slug]/+page.css"
+  },
+  "src/routes/data/+page.css": {
+    "file": "_app/immutable/assets/_page-50db621c.css",
+    "src": "src/routes/data/+page.css"
   },
   "src/routes/send/+page.css": {
     "file": "_app/immutable/assets/_page-813b5899.css",
     "src": "src/routes/send/+page.css"
   },
-  "src/routes/[slug]/+page.css": {
-    "file": "_app/immutable/assets/_page-491cb38e.css",
-    "src": "src/routes/[slug]/+page.css"
+  "src/routes/get/+page.css": {
+    "file": "_app/immutable/assets/_page-c38ddede.css",
+    "src": "src/routes/get/+page.css"
+  },
+  "Toast.css": {
+    "file": "_app/immutable/assets/Toast-108eb6d4.css",
+    "src": "Toast.css"
   },
   "src/routes/+layout.css": {
     "file": "_app/immutable/assets/_layout-b9e95e55.css",
