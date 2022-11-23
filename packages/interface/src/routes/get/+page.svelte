@@ -21,12 +21,12 @@
         value: parseEther('0.001'),
       })
       await tx.wait()
-      notifications.success('KuwaCoin を獲得しました')
+      notifications.success($t("You've got Kuwa Coin"))
     } catch (error: any) {
       const _error = error.error?.reason || error
       console.error(_error)
       notifications.error(_error)
-      requestTokensErrorMessage = 'Something went wrong'
+      requestTokensErrorMessage = $t('Something went wrong')
     } finally {
       isRequesting = false
     }

@@ -40,6 +40,7 @@ const resources = {
       'Your wallet address:': 'あなたのウォレット：',
       'Input your wallet address': 'アドレスを入力',
       'Give me KWC': 'KWC を入手',
+      "You've got Kuwa Coin": 'KuwaCoin を獲得しました',
 
       // Send
       "You haven't sent KWC to Master Kuwa yet.":
@@ -48,6 +49,9 @@ const resources = {
         'あなたは Master Kuwa に KWC を送りました。',
       'Show Cirtificate': '証書を表示する',
       Send: '送る',
+
+      // Error
+      'Something went wrong': '不明なエラー',
     },
   },
 } as const
