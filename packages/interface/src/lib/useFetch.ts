@@ -6,17 +6,20 @@ export type UseFetchOptions<T> = {
 }
 
 export function useFetch<T>(
-  _fetch: () => Promise<T>,
-  options: UseFetchOptions<T> = { immediate: true }
+  fetch: () => Promise<T>,
+  options: UseFetchOptions<T> = {}
 ) {
+  const _options = { immediate: true, ...options }
+
   const isLoading = writable(true)
-  const data = options.data || writable<T>()
+  const data = _options.data || writable<T>()
   const error = writable()
 
-  const fetch = () =>
-    _fetch()
+  const _fetch = () =>
+    fetch()
       .then((value) => {
         data.set(value)
+        console.log('Then:', value)
       })
       .catch((e) => {
         error.set(e)
@@ -24,9 +27,10 @@ export function useFetch<T>(
       })
       .finally(() => {
         isLoading.set(false)
+        console.log('Finally')
       })
 
-  if (options.immediate) fetch()
+  if (_options.immediate) _fetch()
 
-  return { isLoading, data, error, fetch }
+  return { isLoading, data, error, fetch: _fetch }
 }

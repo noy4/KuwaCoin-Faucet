@@ -1,15 +1,19 @@
 <script lang="ts">
-  import { kuwaCoin } from '$lib/contracts'
+  import { useTotalSupply } from '$lib/store'
   import { formatEther } from '@ethersproject/units'
+
+  $: ({ isLoading, data: totalSupply } = useTotalSupply())
 </script>
 
 <tr>
   <td>Total Supply</td>
   <td class="text-right">
-    {#await $kuwaCoin.totalSupply()}
+    {#if $totalSupply}
+      {(+formatEther($totalSupply)).toLocaleString()}
+    {:else if isLoading}
       loading...
-    {:then value}
-      {value ? (+formatEther(value)).toLocaleString() : '-'}
-    {/await}
+    {:else}
+      -
+    {/if}
   </td>
 </tr>

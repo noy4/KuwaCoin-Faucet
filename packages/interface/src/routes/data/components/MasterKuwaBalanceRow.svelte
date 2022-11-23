@@ -1,16 +1,19 @@
 <script lang="ts">
-  import { PUBLIC_MASTER_KUWA_ADDRESS } from '$env/static/public'
-  import { kuwaCoin } from '$lib/contracts'
+  import { useMasterKuwaBalance } from '$lib/store'
   import { formatEther } from '@ethersproject/units'
+
+  $: ({ isLoading, data } = useMasterKuwaBalance())
 </script>
 
 <tr>
   <td>KWC Balance</td>
   <td class="text-right">
-    {#await $kuwaCoin.balanceOf(PUBLIC_MASTER_KUWA_ADDRESS)}
+    {#if $data}
+      {(+formatEther($data)).toLocaleString()}
+    {:else if isLoading}
       loading...
-    {:then value}
-      {value ? (+formatEther(value)).toLocaleString() : '-'}
-    {/await}
+    {:else}
+      -
+    {/if}
   </td>
 </tr>

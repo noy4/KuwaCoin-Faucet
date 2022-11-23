@@ -32,7 +32,10 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
+          PUBLIC_HELPER_PRIVATE_KEY: ${{secrets.PUBLIC_HELPER_PRIVATE_KEY}}
           PUBLIC_PROVIDER_URL: ${{secrets.PUBLIC_PROVIDER_URL}}
+          PUBLIC_KUWA_COIN_ADDRESS: ${{secrets.PUBLIC_KUWA_COIN_ADDRESS}}
+          PUBLIC_MASTER_KUWA_ADDRESS: ${{secrets.PUBLIC_MASTER_KUWA_ADDRESS}}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

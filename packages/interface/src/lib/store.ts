@@ -32,12 +32,12 @@ export function useBalance(
 export function useTotalSupply() {
   return useFetch($kuwaCoin.totalSupply, { data: totalSupply })
 }
-export function useGivenCount() {
-  return useFetch(masterKuwa.givenCount, { data: givenCount })
-}
 export function useMasterKuwaBalance() {
   const fetch = () => $kuwaCoin.balanceOf(PUBLIC_MASTER_KUWA_ADDRESS)
   return useFetch(fetch, {
     data: masterKuwaBalance,
   })
+}
+export function useGivenCount() {
+  return useFetch(masterKuwa.givenCount, { data: givenCount })
 }

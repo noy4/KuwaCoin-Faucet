@@ -1,14 +1,18 @@
 <script lang="ts">
-  import { masterKuwa } from '$lib/contracts'
+  import { useGivenCount } from '$lib/store'
+
+  $: ({ isLoading, data } = useGivenCount())
 </script>
 
 <tr>
   <td>Given Count</td>
   <td class="text-right">
-    {#await masterKuwa.givenCount()}
+    {#if $data}
+      {$data}
+    {:else if isLoading}
       loading...
-    {:then value}
-      {value || '-'}
-    {/await}
+    {:else}
+      -
+    {/if}
   </td>
 </tr>
