@@ -2,13 +2,14 @@
   import { Jazzicon } from '$components'
   import { kuwaCoin, wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
+  import { useBalance } from '$lib/store'
   import { shortenAddress } from '$lib/utils'
   import { formatEther } from '@ethersproject/units'
   import { onMount } from 'svelte'
 
   export let createWallet: () => void
 
-  $: balance = $wallet ? $kuwaCoin.balanceOf($wallet.address) : undefined
+  $: ({ data: balance, fetch: fetchBalance } = useBalance({ immediate: false }))
 
   const onTransfer = (...args: any[]) => {
     if (!$wallet) return
@@ -18,8 +19,10 @@
       amount: formatEther(args[2]),
       txHash: args[3].transactionHash.slice(2, 5),
     })
-    balance = $kuwaCoin.balanceOf($wallet.address)
+    fetchBalance()
   }
+
+  $: if ($wallet) fetchBalance()
 
   onMount(() => {
     $kuwaCoin.on('Transfer', onTransfer)
@@ -28,11 +31,14 @@
 
 {#if $wallet}
   <div class="bg-base-200 p-0.5 rounded-xl">
-    {#await balance then value}
-      <div class="mx-2">
-        {value ? formatEther(value) : '-'} <span class="text-xs">KWC</span>
-      </div>
-    {/await}
+    <div class="mx-2">
+      {#if $balance}
+        {formatEther($balance)}
+      {:else}
+        -
+      {/if}
+      <span class="text-xs">KWC</span>
+    </div>
     <label
       for="wallet-modal"
       class="btn btn-ghost btn-sm normal-case bg-base-100 rounded-xl gap-2"
