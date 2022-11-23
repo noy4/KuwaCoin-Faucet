@@ -114,7 +114,9 @@
                     copiable={false}
                   />
                   {#if item.args.from === $wallet?.address}
-                    <div class="badge badge-sm badge-ghost">You</div>
+                    <div class="badge badge-sm badge-outline">You</div>
+                  {:else if item.args.from === PUBLIC_MASTER_KUWA_ADDRESS}
+                    <div class="badge badge-sm badge-ghost">Master</div>
                   {/if}
                 </div>
               </td>
@@ -127,7 +129,9 @@
                     copiable={false}
                   />
                   {#if item.args.to === $wallet?.address}
-                    <div class="badge badge-sm badge-ghost">You</div>
+                    <div class="badge badge-sm badge-outline">You</div>
+                  {:else if item.args.to === PUBLIC_MASTER_KUWA_ADDRESS}
+                    <div class="badge badge-sm badge-ghost">Master</div>
                   {/if}
                 </div>
               </td>

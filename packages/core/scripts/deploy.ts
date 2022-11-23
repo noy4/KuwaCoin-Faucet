@@ -1,4 +1,5 @@
 import { ethers } from 'hardhat'
+import hre from 'hardhat'
 
 async function main() {
   const [owner] = await ethers.getSigners()
@@ -19,11 +20,14 @@ async function main() {
   })
 
   await kuwaCoin.transfer(masterKuwa.address, ethers.utils.parseEther('100000'))
-  const HELPER_ADDRESS = '0x64be755e78ee1edade7e3590e1591a3707ce9d0c'
-  owner.sendTransaction({
-    to: HELPER_ADDRESS,
-    value: ethers.utils.parseEther('2000'),
-  })
+  console.log('hre.network.name:', hre.network.name)
+  if (hre.network.name === 'localhost') {
+    const HELPER_ADDRESS = '0x64be755e78ee1edade7e3590e1591a3707ce9d0c'
+    owner.sendTransaction({
+      to: HELPER_ADDRESS,
+      value: ethers.utils.parseEther('2000'),
+    })
+  }
 }
 
 main().catch((error) => {
