@@ -36,13 +36,13 @@
 <ImportModal />
 
 <header
-  class="navbar gap-2 {isHome ? 'bØg-transparent' : 'bg-base-100'}"
+  class="navbar gap-1 {isHome ? 'bØg-transparent' : 'bg-base-100'}"
   class:absolute={isHome}
   class:shadow={!isHome}
 >
   <div class="flex-1">
     <button
-      class="btn btn-ghost text-xl normal-case"
+      class="btn btn-ghost text-xl normal-case px-2"
       class:light-text-neutral-content={isHome}
     >
       <Link to="/">
