@@ -3,18 +3,19 @@
   import {
     PUBLIC_KUWA_COIN_ADDRESS,
     PUBLIC_MASTER_KUWA_ADDRESS,
+    PUBLIC_PROVIDER_URL,
   } from '$env/static/public'
   import { kuwaCoin, masterKuwa, wallet } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
   import { formatEther } from '@ethersproject/units'
+  import { onMount } from 'svelte'
 
   let isTransfersLoading = false
   let transfers: TransferEvent[] = []
 
   async function getTransfers() {
-    if (!$kuwaCoin) return
     isTransfersLoading = true
     try {
       transfers = await $kuwaCoin.queryFilter($kuwaCoin.filters.Transfer())
@@ -23,9 +24,9 @@
     }
   }
 
-  $: if ($kuwaCoin) {
+  onMount(() => {
     getTransfers()
-  }
+  })
 </script>
 
 <section class="flex flex-col items-center px-4">
@@ -34,8 +35,10 @@
   <Card class="p-8 mt-4">
     <table>
       <tr>
-        <td>Chain</td>
-        <td class="text-right">Sepolia</td>
+        <td>Network</td>
+        <td class="text-right">
+          {PUBLIC_PROVIDER_URL ? 'Sepolia' : 'Localhost'}
+        </td>
       </tr>
       <tr>
         <td>Address</td>
@@ -49,7 +52,7 @@
       <tr>
         <td>Total Supply</td>
         <td class="text-right">
-          {#await $kuwaCoin?.totalSupply()}
+          {#await $kuwaCoin.totalSupply()}
             loading...
           {:then value}
             {value ? (+formatEther(value)).toLocaleString() : '-'}
@@ -69,7 +72,7 @@
       <tr>
         <td>KWC Balance</td>
         <td class="text-right">
-          {#await $kuwaCoin?.balanceOf(PUBLIC_MASTER_KUWA_ADDRESS)}
+          {#await $kuwaCoin.balanceOf(PUBLIC_MASTER_KUWA_ADDRESS)}
             loading...
           {:then value}
             {value ? (+formatEther(value)).toLocaleString() : '-'}

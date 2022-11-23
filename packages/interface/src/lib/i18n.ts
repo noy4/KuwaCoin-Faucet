@@ -49,6 +49,7 @@ const resources = {
         'あなたは Master Kuwa に KWC を送りました。',
       'Show Cirtificate': '証書を表示する',
       Send: '送る',
+      'Transfer completed': '送金が完了しました',
 
       // Error
       'Something went wrong': '不明なエラー',

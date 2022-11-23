@@ -15,9 +15,7 @@ export const provider = new ethers.providers.JsonRpcProvider(
 const signerOrProvider = derived(wallet, ($signer) => $signer || provider)
 
 export const kuwaCoin = derived(signerOrProvider, ($signerOrProvider) =>
-  $signerOrProvider
-    ? KuwaCoin__factory.connect(PUBLIC_KUWA_COIN_ADDRESS, $signerOrProvider)
-    : undefined
+  KuwaCoin__factory.connect(PUBLIC_KUWA_COIN_ADDRESS, $signerOrProvider)
 )
 
 export const helperWallet = new ethers.Wallet(

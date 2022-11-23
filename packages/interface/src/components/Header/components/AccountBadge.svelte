@@ -4,14 +4,14 @@
   import { t } from '$lib/i18n'
   import { shortenAddress } from '$lib/utils'
   import { formatEther } from '@ethersproject/units'
+  import { onMount } from 'svelte'
 
   export let createWallet: () => void
 
-  $: balance =
-    $kuwaCoin && $wallet ? $kuwaCoin.balanceOf($wallet.address) : undefined
+  $: balance = $wallet ? $kuwaCoin.balanceOf($wallet.address) : undefined
 
   const onTransfer = (...args: any[]) => {
-    if (!$wallet || !$kuwaCoin) return
+    if (!$wallet) return
     console.log('Transfer:', {
       from: args[0].slice(2, 5),
       to: args[1].slice(2, 5),
@@ -20,9 +20,10 @@
     })
     balance = $kuwaCoin.balanceOf($wallet.address)
   }
-  $: if ($kuwaCoin) {
+
+  onMount(() => {
     $kuwaCoin.on('Transfer', onTransfer)
-  }
+  })
 </script>
 
 {#if $wallet}

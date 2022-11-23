@@ -7,6 +7,7 @@
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { BigNumber } from 'ethers'
   import { parseEther } from 'ethers/lib/utils'
+  import { onMount } from 'svelte'
 
   let transfers: TransferEvent[] = []
   let amount = ''
@@ -15,7 +16,7 @@
   let errorMessage = ''
 
   async function getTransfers() {
-    if (!$wallet || !$kuwaCoin) return
+    if (!$wallet) return
     transfers = await $kuwaCoin.queryFilter(
       $kuwaCoin.filters.Transfer($wallet.address, PUBLIC_MASTER_KUWA_ADDRESS)
     )
@@ -23,7 +24,7 @@
 
   async function send() {
     errorMessage = ''
-    if (!$wallet || !$kuwaCoin) {
+    if (!$wallet) {
       errorMessage = 'Connect wallet first'
       return
     }
@@ -31,27 +32,25 @@
     try {
       const tx = await $kuwaCoin.transfer(toAddress, parseEther(amount))
       await tx.wait()
-      notifications.success('送金が完了しました')
+      notifications.success($t('Transfer completed'))
     } catch (error: any) {
       errorMessage = 'Something went wrong'
       const _error = error.error?.reason || error.error?.data?.message || error
       console.error(JSON.stringify(error, null, 2))
-      notifications.error(_error)
+      notifications.error(JSON.stringify(_error, null, 2))
     }
     isSending = false
   }
-
-  $: if ($kuwaCoin) {
-    $kuwaCoin.on('Transfer', getTransfers)
-    getTransfers()
-  }
-
-  $: if (!$wallet) transfers = []
 
   $: totalTransferedAmount = transfers.reduce(
     (prev, current) => prev.add(current.args.value),
     BigNumber.from(0)
   )
+
+  onMount(() => {
+    $kuwaCoin.on('Transfer', getTransfers)
+    getTransfers()
+  })
 </script>
 
 <Certificate {totalTransferedAmount} />

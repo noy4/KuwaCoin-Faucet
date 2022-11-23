@@ -5,6 +5,7 @@
   import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
   import { formatEther, parseEther } from '@ethersproject/units'
+  import { onMount } from 'svelte'
 
   let balance: BigNumber | undefined
   let isBalanceLoading = false
@@ -33,7 +34,7 @@
   }
 
   async function getBalance() {
-    if (!$kuwaCoin || !$wallet) {
+    if (!$wallet) {
       balance = undefined
       return
     }
@@ -43,7 +44,7 @@
   }
 
   function onTransfer(...args: any[]) {
-    if (!$wallet || !$kuwaCoin) return
+    if (!$wallet) return
     console.log('Transfer:', {
       from: args[0].slice(2, 5),
       to: args[1].slice(2, 5),
@@ -58,12 +59,12 @@
     requestTokensErrorMessage = ''
   }
 
-  $: if ($kuwaCoin) {
+  $: if (!$wallet) balance = undefined
+
+  onMount(() => {
     $kuwaCoin.on('Transfer', onTransfer)
     getBalance()
-  }
-
-  $: if (!$wallet) balance = undefined
+  })
 </script>
 
 <section class="flex flex-col items-center px-4">
