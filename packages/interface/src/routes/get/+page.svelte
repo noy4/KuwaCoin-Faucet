@@ -1,14 +1,12 @@
 <script lang="ts">
   import { Card } from '$components'
-  import { masterKuwa, kuwaCoin, wallet } from '$lib/contracts'
+  import { kuwaCoin, masterKuwa, wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
-  import type { BigNumber } from 'ethers'
+  import { useBalance } from '$lib/store'
   import { formatEther, parseEther } from '@ethersproject/units'
   import { onMount } from 'svelte'
 
-  let balance: BigNumber | undefined
-  let isBalanceLoading = false
   let toAddress = ''
   let isRequesting = false
   let requestTokensErrorMessage = ''
@@ -33,15 +31,11 @@
     }
   }
 
-  async function getBalance() {
-    if (!$wallet) {
-      balance = undefined
-      return
-    }
-    isBalanceLoading = true
-    balance = await $kuwaCoin.balanceOf($wallet.address)
-    isBalanceLoading = false
-  }
+  const {
+    isLoading: isBalanceLoading,
+    data: balance,
+    fetch: fetchBalance,
+  } = useBalance({ immediate: false })
 
   function onTransfer(...args: any[]) {
     if (!$wallet) return
@@ -51,19 +45,19 @@
       amount: formatEther(args[2]),
       txHash: args[3].transactionHash.slice(2, 5),
     })
-    getBalance()
+    fetchBalance()
   }
+
+  $: if ($wallet) fetchBalance()
+  $: if (!$wallet) balance.set(undefined)
 
   $: {
     toAddress = $wallet?.address || ''
     requestTokensErrorMessage = ''
   }
 
-  $: if (!$wallet) balance = undefined
-
   onMount(() => {
     $kuwaCoin.on('Transfer', onTransfer)
-    getBalance()
   })
 </script>
 
@@ -71,10 +65,10 @@
   <h3 class="text-xl font-bold mt-8">You have</h3>
   <div class="mt-2">
     <span class="text-5xl font-semibold">
-      {#if isBalanceLoading && !balance}
+      {#if $isBalanceLoading && !$balance}
         -
       {:else}
-        {balance ? formatEther(balance).toLocaleString() : '-'}
+        {$balance ? formatEther($balance).toLocaleString() : '-'}
       {/if}
     </span>
     <span class="font-bold">KWC</span>
