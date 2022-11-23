@@ -4,7 +4,7 @@
   import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
-  import { formatEther } from '@ethersproject/units'
+  import { formatEther, parseEther } from '@ethersproject/units'
 
   let balance: BigNumber | undefined
   let isBalanceLoading = false
@@ -17,7 +17,9 @@
     requestTokensErrorMessage = ''
 
     try {
-      const tx = await faucet.requestTokens(toAddress)
+      const tx = await faucet.requestTokens(toAddress, {
+        value: parseEther('0.001'),
+      })
       await tx.wait()
       notifications.success('KuwaCoin を獲得しました')
     } catch (error: any) {

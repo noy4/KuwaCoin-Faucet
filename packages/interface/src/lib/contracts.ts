@@ -1,5 +1,10 @@
-import { PUBLIC_PROVIDER_URL } from '$env/static/public'
-import { Faucet__factory, KuwaCoin__factory } from '$lib/typechain-types'
+import {
+  PUBLIC_HELPER_PRIVATE_KEY,
+  PUBLIC_KUWA_COIN_ADDRESS,
+  PUBLIC_MASTER_KUWA_ADDRESS,
+  PUBLIC_PROVIDER_URL,
+} from '$env/static/public'
+import { MasterKuwa__factory, KuwaCoin__factory } from '$lib/typechain-types'
 import { ethers, type Wallet } from 'ethers'
 import { derived, writable } from 'svelte/store'
 
@@ -9,16 +14,17 @@ export const provider = new ethers.providers.JsonRpcProvider(
 )
 const signerOrProvider = derived(wallet, ($signer) => $signer || provider)
 
-export const KUWA_COIN_ADDRESS = '0xB152A6695026187c6693614B788959B3d9B76186'
 export const kuwaCoin = derived(signerOrProvider, ($signerOrProvider) =>
   $signerOrProvider
-    ? KuwaCoin__factory.connect(KUWA_COIN_ADDRESS, $signerOrProvider)
+    ? KuwaCoin__factory.connect(PUBLIC_KUWA_COIN_ADDRESS, $signerOrProvider)
     : undefined
 )
 
-export const HELPER_ADDRESS = '0x64Be755E78eE1eDaDe7e3590E1591A3707cE9d0c'
-export const HELPER_PRIVATE_KEY =
-  '0xe7e0be15428062a757a7ca7fbcba5f69848347545403d48b813740e42999ab77'
-export const FAUCET_ADDRESS = '0xAfa1ECdBA51E114b8618BCe459DBfc5921E06d44'
-export const helperWallet = new ethers.Wallet(HELPER_PRIVATE_KEY, provider)
-export const faucet = Faucet__factory.connect(FAUCET_ADDRESS, helperWallet)
+export const helperWallet = new ethers.Wallet(
+  PUBLIC_HELPER_PRIVATE_KEY,
+  provider
+)
+export const faucet = MasterKuwa__factory.connect(
+  PUBLIC_MASTER_KUWA_ADDRESS,
+  helperWallet
+)

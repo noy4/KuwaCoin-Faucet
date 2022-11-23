@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Card, Certificate, Input } from '$components'
-  import { FAUCET_ADDRESS, kuwaCoin, wallet } from '$lib/contracts'
+  import { PUBLIC_MASTER_KUWA_ADDRESS } from '$env/static/public'
+  import { kuwaCoin, wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
@@ -9,14 +10,14 @@
 
   let transfers: TransferEvent[] = []
   let amount = ''
-  let toAddress = FAUCET_ADDRESS
+  let toAddress = PUBLIC_MASTER_KUWA_ADDRESS
   let isSending = false
   let errorMessage = ''
 
   async function getTransfers() {
     if (!$wallet || !$kuwaCoin) return
     transfers = await $kuwaCoin.queryFilter(
-      $kuwaCoin.filters.Transfer($wallet.address, FAUCET_ADDRESS)
+      $kuwaCoin.filters.Transfer($wallet.address, PUBLIC_MASTER_KUWA_ADDRESS)
     )
   }
 
@@ -85,7 +86,7 @@
         bind:value={toAddress}
       >
         To:
-        {#if toAddress === FAUCET_ADDRESS}
+        {#if toAddress === PUBLIC_MASTER_KUWA_ADDRESS}
           <span class="badge badge-sm">Master Kuwa</span>
         {/if}
       </Input>
@@ -104,24 +105,6 @@
       </div>
     </form>
   </Card>
-
-  <div class="mt-8 max-w-sm px-2 text-sm">
-    <p>
-      ※送金の手数料として「イーサリアム」という別のコインが必要。これを省くことはどー足掻いても無理やった。すまんね、初心者のみんな。
-    </p>
-    <p class="mt-4">
-      ※その壁を乗り越えて Master Kuwa に KuwaCoin を送る場合、
-      <a
-        href="https://faucet.sepolia.dev/"
-        class="link link-primary"
-        target="_blank"
-        rel="noreferrer"
-      >
-        https://faucet.sepolia.dev/
-      </a>
-      でイーサリアムがもらえる。頑張れ。
-    </p>
-  </div>
 
   <div class="h-16" />
 </section>

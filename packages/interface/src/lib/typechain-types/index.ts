@@ -12,9 +12,7 @@ export type { IERC20Metadata } from "./@openzeppelin/contracts/token/ERC20/exten
 export { IERC20Metadata__factory } from "./factories/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata__factory";
 export type { IERC20 } from "./@openzeppelin/contracts/token/ERC20/IERC20";
 export { IERC20__factory } from "./factories/@openzeppelin/contracts/token/ERC20/IERC20__factory";
-export type { Faucet } from "./contracts/Faucet";
-export { Faucet__factory } from "./factories/contracts/Faucet__factory";
 export type { KuwaCoin } from "./contracts/KuwaCoin";
 export { KuwaCoin__factory } from "./factories/contracts/KuwaCoin__factory";
-export type { Lock } from "./contracts/Lock";
-export { Lock__factory } from "./factories/contracts/Lock__factory";
+export type { MasterKuwa } from "./contracts/MasterKuwa";
+export { MasterKuwa__factory } from "./factories/contracts/MasterKuwa__factory";

@@ -25,17 +25,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
-      name: "Faucet",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Faucet__factory>;
-    getContractFactory(
       name: "KuwaCoin",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.KuwaCoin__factory>;
     getContractFactory(
-      name: "Lock",
+      name: "MasterKuwa",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Lock__factory>;
+    ): Promise<Contracts.MasterKuwa__factory>;
 
     getContractAt(
       name: "ERC20",
@@ -53,20 +49,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
     getContractAt(
-      name: "Faucet",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.Faucet>;
-    getContractAt(
       name: "KuwaCoin",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.KuwaCoin>;
     getContractAt(
-      name: "Lock",
+      name: "MasterKuwa",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Lock>;
+    ): Promise<Contracts.MasterKuwa>;
 
     // default types
     getContractFactory(

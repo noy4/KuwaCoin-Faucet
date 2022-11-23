@@ -1,11 +1,10 @@
 <script lang="ts">
   import { Card, Hash, Jazzicon } from '$components'
   import {
-    FAUCET_ADDRESS,
-    kuwaCoin,
-    KUWA_COIN_ADDRESS,
-    wallet,
-  } from '$lib/contracts'
+    PUBLIC_KUWA_COIN_ADDRESS,
+    PUBLIC_MASTER_KUWA_ADDRESS,
+  } from '$env/static/public'
+  import { kuwaCoin, wallet } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
@@ -42,8 +41,8 @@
         <td>Address</td>
         <td class="text-right whitespace-nowrap">
           <Hash
-            text={KUWA_COIN_ADDRESS}
-            label={shortenAddress(KUWA_COIN_ADDRESS)}
+            text={PUBLIC_KUWA_COIN_ADDRESS}
+            label={shortenAddress(PUBLIC_KUWA_COIN_ADDRESS)}
           />
         </td>
       </tr>
@@ -61,13 +60,16 @@
       <tr>
         <td>Address</td>
         <td class="text-right whitespace-nowrap">
-          <Hash text={FAUCET_ADDRESS} label={shortenAddress(FAUCET_ADDRESS)} />
+          <Hash
+            text={PUBLIC_MASTER_KUWA_ADDRESS}
+            label={shortenAddress(PUBLIC_MASTER_KUWA_ADDRESS)}
+          />
         </td>
       </tr>
       <tr>
         <td class="whitespace-nowrap">KWC Balance</td>
         <td class="text-right">
-          {#await $kuwaCoin?.balanceOf(FAUCET_ADDRESS)}
+          {#await $kuwaCoin?.balanceOf(PUBLIC_MASTER_KUWA_ADDRESS)}
             loading...
           {:then value}
             {value ? (+formatEther(value)).toLocaleString() : '-'}

@@ -3,7 +3,7 @@ pragma solidity >=0.8.0 <0.9.0;
 
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
-contract Faucet {
+contract MasterKuwa {
   IERC20Metadata token;
   address public owner;
   uint256 public constant DRIP_AMOUNT = 5000;
@@ -14,19 +14,20 @@ contract Faucet {
     owner = _ownerAddress;
   }
 
-  function requestTokens(address _to) external {
+  function requestTokens(address _to) external payable {
     require(
       token.balanceOf(address(this)) > DRIP_AMOUNT * 10**token.decimals(),
-      'FausetError: Empty'
+      "Master Kuwa: I don't have Kuwa Coin any more."
     );
     require(
       !drippedList[_to],
-      'FaucetError: You have already got KuwaCoin before'
+      'Master Kuwa: You can only get Kuwa Coin from me once.'
     );
 
     drippedList[_to] = true;
     token.transfer(_to, DRIP_AMOUNT * 10**token.decimals());
-  }
 
-  receive() external payable {}
+    (bool sent, ) = _to.call{value: msg.value}('');
+    require(sent, 'Failed to send Ether');
+  }
 }

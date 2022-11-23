@@ -7,7 +7,7 @@ import type {
   BytesLike,
   CallOverrides,
   ContractTransaction,
-  Overrides,
+  PayableOverrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -22,7 +22,7 @@ import type {
   PromiseOrValue,
 } from "../common";
 
-export interface FaucetInterface extends utils.Interface {
+export interface MasterKuwaInterface extends utils.Interface {
   functions: {
     "DRIP_AMOUNT()": FunctionFragment;
     "owner()": FunctionFragment;
@@ -56,12 +56,12 @@ export interface FaucetInterface extends utils.Interface {
   events: {};
 }
 
-export interface Faucet extends BaseContract {
+export interface MasterKuwa extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: FaucetInterface;
+  interface: MasterKuwaInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -89,7 +89,7 @@ export interface Faucet extends BaseContract {
 
     requestTokens(
       _to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
   };
 
@@ -99,7 +99,7 @@ export interface Faucet extends BaseContract {
 
   requestTokens(
     _to: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
+    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
@@ -122,7 +122,7 @@ export interface Faucet extends BaseContract {
 
     requestTokens(
       _to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
   };
 
@@ -133,7 +133,7 @@ export interface Faucet extends BaseContract {
 
     requestTokens(
       _to: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
   };
 }

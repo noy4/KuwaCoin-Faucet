@@ -8,17 +8,22 @@ async function main() {
     ethers.utils.parseEther('100000')
   )
 
-  const Faucet = await ethers.getContractFactory('Faucet')
-  const faucet = await Faucet.connect(owner).deploy(
+  const MasterKuwa = await ethers.getContractFactory('MasterKuwa')
+  const masterKuwa = await MasterKuwa.connect(owner).deploy(
     kuwaCoin.address,
     owner.address
   )
   console.log('deployed:', {
     kuwaCoin: kuwaCoin.address,
-    faucet: faucet.address,
+    masterKuwa: masterKuwa.address,
   })
 
-  await kuwaCoin.transfer(faucet.address, ethers.utils.parseEther('100000'))
+  await kuwaCoin.transfer(masterKuwa.address, ethers.utils.parseEther('100000'))
+  const HELPER_ADDRESS = '0x64be755e78ee1edade7e3590e1591a3707ce9d0c'
+  owner.sendTransaction({
+    to: HELPER_ADDRESS,
+    value: ethers.utils.parseEther('2000'),
+  })
 }
 
 main().catch((error) => {
