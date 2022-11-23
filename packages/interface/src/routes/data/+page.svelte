@@ -4,7 +4,7 @@
     PUBLIC_KUWA_COIN_ADDRESS,
     PUBLIC_MASTER_KUWA_ADDRESS,
   } from '$env/static/public'
-  import { kuwaCoin, wallet } from '$lib/contracts'
+  import { kuwaCoin, masterKuwa, wallet } from '$lib/contracts'
   import { dayjs } from '$lib/dayjs'
   import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
   import { shortenAddress } from '$lib/utils'
@@ -39,7 +39,7 @@
       </tr>
       <tr>
         <td>Address</td>
-        <td class="text-right whitespace-nowrap">
+        <td class="text-right">
           <Hash
             text={PUBLIC_KUWA_COIN_ADDRESS}
             label={shortenAddress(PUBLIC_KUWA_COIN_ADDRESS)}
@@ -59,7 +59,7 @@
       <tr><td class="text-lg font-semibold pt-4">Master Kuwa</td></tr>
       <tr>
         <td>Address</td>
-        <td class="text-right whitespace-nowrap">
+        <td class="text-right">
           <Hash
             text={PUBLIC_MASTER_KUWA_ADDRESS}
             label={shortenAddress(PUBLIC_MASTER_KUWA_ADDRESS)}
@@ -67,7 +67,7 @@
         </td>
       </tr>
       <tr>
-        <td class="whitespace-nowrap">KWC Balance</td>
+        <td>KWC Balance</td>
         <td class="text-right">
           {#await $kuwaCoin?.balanceOf(PUBLIC_MASTER_KUWA_ADDRESS)}
             loading...
@@ -76,12 +76,22 @@
           {/await}
         </td>
       </tr>
+      <tr>
+        <td>Given Count</td>
+        <td class="text-right">
+          {#await masterKuwa.givenCount()}
+            loading...
+          {:then value}
+            {value || '-'}
+          {/await}
+        </td>
+      </tr>
     </table>
   </Card>
 
   <h2 class="text-3xl font-bold mt-12">Transfers</h2>
 
-  <div class="overflow-x-auto max-w-md w-full mx-auto not-prose mt-4 z-0">
+  <div class="overflow-x-auto max-w-xl w-full mx-auto not-prose mt-4 z-0">
     <table class="table table-compact w-full">
       <thead>
         <tr>

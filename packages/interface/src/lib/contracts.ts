@@ -24,7 +24,7 @@ export const helperWallet = new ethers.Wallet(
   PUBLIC_HELPER_PRIVATE_KEY,
   provider
 )
-export const faucet = MasterKuwa__factory.connect(
+export const masterKuwa = MasterKuwa__factory.connect(
   PUBLIC_MASTER_KUWA_ADDRESS,
   helperWallet
 )

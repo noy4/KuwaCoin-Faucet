@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Card } from '$components'
-  import { faucet, kuwaCoin, wallet } from '$lib/contracts'
+  import { masterKuwa, kuwaCoin, wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
   import type { BigNumber } from 'ethers'
@@ -17,7 +17,7 @@
     requestTokensErrorMessage = ''
 
     try {
-      const tx = await faucet.requestTokens(toAddress, {
+      const tx = await masterKuwa.requestTokens(toAddress, {
         value: parseEther('0.001'),
       })
       await tx.wait()

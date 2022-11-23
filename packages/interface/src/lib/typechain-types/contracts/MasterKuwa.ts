@@ -25,16 +25,25 @@ import type {
 export interface MasterKuwaInterface extends utils.Interface {
   functions: {
     "DRIP_AMOUNT()": FunctionFragment;
+    "givenCount()": FunctionFragment;
     "owner()": FunctionFragment;
     "requestTokens(address)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "DRIP_AMOUNT" | "owner" | "requestTokens"
+    nameOrSignatureOrTopic:
+      | "DRIP_AMOUNT"
+      | "givenCount"
+      | "owner"
+      | "requestTokens"
   ): FunctionFragment;
 
   encodeFunctionData(
     functionFragment: "DRIP_AMOUNT",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "givenCount",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
@@ -47,6 +56,7 @@ export interface MasterKuwaInterface extends utils.Interface {
     functionFragment: "DRIP_AMOUNT",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "givenCount", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "requestTokens",
@@ -85,6 +95,8 @@ export interface MasterKuwa extends BaseContract {
   functions: {
     DRIP_AMOUNT(overrides?: CallOverrides): Promise<[BigNumber]>;
 
+    givenCount(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     owner(overrides?: CallOverrides): Promise<[string]>;
 
     requestTokens(
@@ -95,6 +107,8 @@ export interface MasterKuwa extends BaseContract {
 
   DRIP_AMOUNT(overrides?: CallOverrides): Promise<BigNumber>;
 
+  givenCount(overrides?: CallOverrides): Promise<BigNumber>;
+
   owner(overrides?: CallOverrides): Promise<string>;
 
   requestTokens(
@@ -104,6 +118,8 @@ export interface MasterKuwa extends BaseContract {
 
   callStatic: {
     DRIP_AMOUNT(overrides?: CallOverrides): Promise<BigNumber>;
+
+    givenCount(overrides?: CallOverrides): Promise<BigNumber>;
 
     owner(overrides?: CallOverrides): Promise<string>;
 
@@ -118,6 +134,8 @@ export interface MasterKuwa extends BaseContract {
   estimateGas: {
     DRIP_AMOUNT(overrides?: CallOverrides): Promise<BigNumber>;
 
+    givenCount(overrides?: CallOverrides): Promise<BigNumber>;
+
     owner(overrides?: CallOverrides): Promise<BigNumber>;
 
     requestTokens(
@@ -128,6 +146,8 @@ export interface MasterKuwa extends BaseContract {
 
   populateTransaction: {
     DRIP_AMOUNT(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    givenCount(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 

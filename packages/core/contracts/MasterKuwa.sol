@@ -8,6 +8,7 @@ contract MasterKuwa {
   address public owner;
   uint256 public constant DRIP_AMOUNT = 5000;
   mapping(address => bool) drippedList;
+  uint256 public givenCount = 0;
 
   constructor(address _tokenAddress, address _ownerAddress) {
     token = IERC20Metadata(_tokenAddress);
@@ -26,6 +27,7 @@ contract MasterKuwa {
 
     drippedList[_to] = true;
     token.transfer(_to, DRIP_AMOUNT * 10**token.decimals());
+    givenCount += 1;
 
     (bool sent, ) = _to.call{value: msg.value}('');
     require(sent, 'Failed to send Ether');
