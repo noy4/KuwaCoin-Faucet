@@ -19,7 +19,6 @@ export function useFetch<T>(
     fetch()
       .then((value) => {
         data.set(value)
-        console.log('Then:', value)
       })
       .catch((e) => {
         error.set(e)
@@ -27,7 +26,6 @@ export function useFetch<T>(
       })
       .finally(() => {
         isLoading.set(false)
-        console.log('Finally')
       })
 
   if (_options.immediate) _fetch()
