@@ -4,23 +4,18 @@
   import { kuwaCoin, wallet } from '$lib/contracts'
   import { t } from '$lib/i18n'
   import { notifications } from '$lib/notifications'
-  import type { TransferEvent } from '$lib/typechain-types/contracts/KuwaCoin'
+  import { useTransfersToMaster } from '$lib/store'
   import { BigNumber } from 'ethers'
   import { parseEther } from 'ethers/lib/utils'
   import { onMount } from 'svelte'
 
-  let transfers: TransferEvent[] = []
   let amount = ''
   let toAddress = PUBLIC_MASTER_KUWA_ADDRESS
   let isSending = false
   let errorMessage = ''
 
-  async function getTransfers() {
-    if (!$wallet) return
-    transfers = await $kuwaCoin.queryFilter(
-      $kuwaCoin.filters.Transfer($wallet.address, PUBLIC_MASTER_KUWA_ADDRESS)
-    )
-  }
+  $: ({ data: transfersToMaster, fetch: fetchTransfersToMaster } =
+    useTransfersToMaster({ immediate: false }))
 
   async function send() {
     errorMessage = ''
@@ -42,21 +37,22 @@
     isSending = false
   }
 
-  $: totalTransferedAmount = transfers.reduce(
+  $: totalTransferedAmount = $transfersToMaster.reduce(
     (prev, current) => prev.add(current.args.value),
     BigNumber.from(0)
   )
 
+  $: if ($wallet) fetchTransfersToMaster()
+
   onMount(() => {
-    $kuwaCoin.on('Transfer', getTransfers)
-    getTransfers()
+    $kuwaCoin.on('Transfer', fetchTransfersToMaster)
   })
 </script>
 
 <Certificate {totalTransferedAmount} />
 
 <section class="flex flex-col items-center px-4">
-  {#if transfers.length}
+  {#if $transfersToMaster.length}
     <div class="i-tabler-award text-6xl mt-8" />
     <p class="mt-2 text-center">{$t("You've sent some KWC to Master Kuwa.")}</p>
     <label for="certificate" class="btn btn-xs btn-primary normal-case mt-1">

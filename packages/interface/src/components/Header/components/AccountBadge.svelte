@@ -12,7 +12,6 @@
   $: ({ data: balance, fetch: fetchBalance } = useBalance({ immediate: false }))
 
   const onTransfer = (...args: any[]) => {
-    if (!$wallet) return
     console.log('Transfer:', {
       from: args[0].slice(2, 5),
       to: args[1].slice(2, 5),

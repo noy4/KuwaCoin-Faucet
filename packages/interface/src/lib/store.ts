@@ -21,6 +21,7 @@ const totalSupply = writable<BigNumber | undefined>()
 const masterKuwaBalance = writable<BigNumber | undefined>()
 const givenCount = writable<BigNumber | undefined>()
 const transfers = writable<TransferEvent[]>([])
+const transfersToMaster = writable<TransferEvent[]>([])
 
 export function useBalance(
   options: UseFetchOptions<BigNumber | undefined> = {}
@@ -46,4 +47,13 @@ export function useGivenCount() {
 export function useTransfers() {
   const fetch = () => $kuwaCoin.queryFilter($kuwaCoin.filters.Transfer())
   return useFetch(fetch, { data: transfers })
+}
+export function useTransfersToMaster(
+  options: UseFetchOptions<TransferEvent[]> = {}
+) {
+  const fetch = () =>
+    $kuwaCoin.queryFilter(
+      $kuwaCoin.filters.Transfer($wallet?.address, PUBLIC_MASTER_KUWA_ADDRESS)
+    )
+  return useFetch(fetch, { data: transfersToMaster, ...options })
 }
